@@ -1,0 +1,78 @@
+[
+    {
+        "id": "sword_debug_blade",
+        "name": "Debug Blade",
+        "type": "sword",
+        "rarity": "common",
+        "price": 500,
+        "effect": "+5 seconds answer time",
+        "description": "A basic blade used for slicing through bugs."
+    },
+    {
+        "id": "sword_logic_katana",
+        "name": "Logic Katana",
+        "type": "sword",
+        "rarity": "rare",
+        "price": 1200,
+        "effect": "+10% XP gain",
+        "description": "A sharp blade that focuses the wielder's logic."
+    },
+    {
+        "id": "sword_compiler_crusher",
+        "name": "Compiler Crusher",
+        "type": "sword",
+        "rarity": "epic",
+        "price": 3000,
+        "effect": "+15% Damage in Raids",
+        "description": "A heavy greatsword that can break any compiler's spirit."
+    },
+    {
+        "id": "sword_binary_reaper",
+        "name": "Binary Reaper",
+        "type": "sword",
+        "rarity": "legendary",
+        "price": 7500,
+        "effect": "Double Coins from wins",
+        "description": "A legendary scythe forged from pure machine code."
+    },
+    {
+        "id": "powerup_hint",
+        "name": "Hint Scanner",
+        "type": "powerup",
+        "rarity": "common",
+        "price": 120,
+        "effect": "Remove two wrong options",
+        "effectType": "50_50",
+        "value": 2
+    },
+    {
+        "id": "powerup_time_warp",
+        "name": "Time Warp",
+        "type": "powerup",
+        "rarity": "uncommon",
+        "price": 250,
+        "effect": "+10 seconds answering time",
+        "effectType": "extra_time",
+        "value": 10
+    },
+    {
+        "id": "powerup_shield",
+        "name": "Firewall Shield",
+        "type": "powerup",
+        "rarity": "rare",
+        "price": 400,
+        "effect": "Protect against one wrong answer",
+        "effectType": "shield",
+        "value": 1
+    },
+    {
+        "id": "powerup_double_xp",
+        "name": "XP Overload",
+        "type": "powerup",
+        "rarity": "epic",
+        "price": 600,
+        "effect": "Double XP for next match",
+        "effectType": "xp_boost",
+        "value": 2
+    }
+]

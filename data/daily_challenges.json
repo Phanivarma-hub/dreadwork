@@ -1,0 +1,72 @@
+[
+    {
+        "challengeId": "daily001",
+        "description": "Win 2 duels today",
+        "rewardCoins": 100,
+        "type": "win_duels",
+        "target": 2
+    },
+    {
+        "challengeId": "daily002",
+        "description": "Solve 5 MCQ questions",
+        "rewardXP": 50,
+        "type": "complete_questions",
+        "target": 5
+    },
+    {
+        "challengeId": "daily003",
+        "description": "Participate in a Raid match",
+        "rewardCoins": 200,
+        "type": "raid_participation",
+        "target": 1
+    },
+    {
+        "challengeId": "daily004",
+        "description": "Get a perfect score in a verification quiz",
+        "rewardXP": 150,
+        "type": "perfect_score",
+        "target": 1
+    },
+    {
+        "challengeId": "daily005",
+        "description": "Earn 500 coins in one day",
+        "rewardXP": 100,
+        "type": "earn_coins",
+        "target": 500
+    },
+    {
+        "challengeId": "daily006",
+        "description": "Complete 3 Study topics",
+        "rewardXP": 80,
+        "type": "study_topics",
+        "target": 3
+    },
+    {
+        "challengeId": "daily007",
+        "description": "Defeat a boss in Raid mode",
+        "rewardCoins": 500,
+        "type": "defeat_boss",
+        "target": 1
+    },
+    {
+        "challengeId": "daily008",
+        "description": "Win a Battle Royale match",
+        "rewardCoins": 1000,
+        "type": "win_br",
+        "target": 1
+    },
+    {
+        "challengeId": "daily009",
+        "description": "Login 3 days in a row",
+        "rewardXP": 200,
+        "type": "streak",
+        "target": 3
+    },
+    {
+        "challengeId": "daily010",
+        "description": "Ask 5 questions in the community forum",
+        "rewardCoins": 50,
+        "type": "forum_activity",
+        "target": 5
+    }
+]

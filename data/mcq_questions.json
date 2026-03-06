@@ -1,0 +1,1202 @@
+[
+    {
+        "id": "Q0001",
+        "language": "python",
+        "topic": "variables",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which keyword is used to assign a value to a variable in Python?",
+        "options": [
+            "var",
+            "let",
+            "=",
+            "assign"
+        ],
+        "correctAnswer": "=",
+        "explanation": "In Python, the = operator is used for assignment.",
+        "tags": [
+            "variables",
+            "basics"
+        ]
+    },
+    {
+        "id": "Q0002",
+        "language": "python",
+        "topic": "loops",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which loop is used when the number of iterations is known?",
+        "options": [
+            "while",
+            "for",
+            "repeat",
+            "loop"
+        ],
+        "correctAnswer": "for",
+        "explanation": "A for loop iterates over a sequence with a known number of iterations.",
+        "tags": [
+            "loops",
+            "control_flow"
+        ]
+    },
+    {
+        "id": "Q0003",
+        "language": "python",
+        "topic": "functions",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which keyword is used to define a function in Python?",
+        "options": [
+            "func",
+            "def",
+            "function",
+            "define"
+        ],
+        "correctAnswer": "def",
+        "explanation": "The def keyword is used to define a function in Python.",
+        "tags": [
+            "functions",
+            "basics"
+        ]
+    },
+    {
+        "id": "Q0004",
+        "language": "python",
+        "topic": "lists",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "How do you add an element to the end of a list?",
+        "options": [
+            "list.add()",
+            "list.push()",
+            "list.append()",
+            "list.insert()"
+        ],
+        "correctAnswer": "list.append()",
+        "explanation": "The append() method adds an element to the end of a list.",
+        "tags": [
+            "lists",
+            "data_structures"
+        ]
+    },
+    {
+        "id": "Q0005",
+        "language": "python",
+        "topic": "strings",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What does len('hello') return?",
+        "options": [
+            "4",
+            "5",
+            "6",
+            "Error"
+        ],
+        "correctAnswer": "5",
+        "explanation": "len() returns the number of characters in the string.",
+        "tags": [
+            "strings",
+            "built_in_functions"
+        ]
+    },
+    {
+        "id": "Q0006",
+        "language": "python",
+        "topic": "operators",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What is the result of 10 % 3 in Python?",
+        "options": [
+            "3",
+            "1",
+            "0",
+            "3.33"
+        ],
+        "correctAnswer": "1",
+        "explanation": "The modulus operator (%) returns the remainder of division. 10 / 3 = 3 remainder 1.",
+        "tags": [
+            "operators",
+            "arithmetic"
+        ]
+    },
+    {
+        "id": "Q0007",
+        "language": "python",
+        "topic": "conditionals",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which keyword starts a conditional statement in Python?",
+        "options": [
+            "when",
+            "if",
+            "check",
+            "switch"
+        ],
+        "correctAnswer": "if",
+        "explanation": "The if keyword is used to start a conditional statement.",
+        "tags": [
+            "conditionals",
+            "control_flow"
+        ]
+    },
+    {
+        "id": "Q0008",
+        "language": "python",
+        "topic": "data_types",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What is the type of True in Python?",
+        "options": [
+            "int",
+            "str",
+            "bool",
+            "float"
+        ],
+        "correctAnswer": "bool",
+        "explanation": "True and False are boolean values of type bool.",
+        "tags": [
+            "data_types",
+            "basics"
+        ]
+    },
+    {
+        "id": "Q0009",
+        "language": "python",
+        "topic": "dictionaries",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "How do you access the value of key 'name' in a dictionary d?",
+        "options": [
+            "d.name",
+            "d('name')",
+            "d['name']",
+            "d.get['name']"
+        ],
+        "correctAnswer": "d['name']",
+        "explanation": "Dictionary values are accessed using square bracket notation with the key.",
+        "tags": [
+            "dictionaries",
+            "data_structures"
+        ]
+    },
+    {
+        "id": "Q0010",
+        "language": "python",
+        "topic": "oop",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "What is the first parameter in a class method typically called?",
+        "options": [
+            "this",
+            "self",
+            "cls",
+            "me"
+        ],
+        "correctAnswer": "self",
+        "explanation": "By convention, the first parameter of instance methods in Python is called self.",
+        "tags": [
+            "oop",
+            "classes"
+        ]
+    },
+    {
+        "id": "Q0011",
+        "language": "python",
+        "topic": "error_handling",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "Which keyword is used to handle exceptions in Python?",
+        "options": [
+            "catch",
+            "except",
+            "handle",
+            "error"
+        ],
+        "correctAnswer": "except",
+        "explanation": "The try-except block is used for exception handling in Python.",
+        "tags": [
+            "error_handling",
+            "exceptions"
+        ]
+    },
+    {
+        "id": "Q0012",
+        "language": "python",
+        "topic": "list_comprehension",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "What does [x*2 for x in range(3)] produce?",
+        "options": [
+            "[0, 1, 2]",
+            "[2, 4, 6]",
+            "[0, 2, 4]",
+            "[1, 2, 3]"
+        ],
+        "correctAnswer": "[0, 2, 4]",
+        "explanation": "range(3) gives 0,1,2 and each is multiplied by 2.",
+        "tags": [
+            "list_comprehension",
+            "lists"
+        ]
+    },
+    {
+        "id": "Q0013",
+        "language": "java",
+        "topic": "basics",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What is the correct way to declare a variable of type integer in Java?",
+        "options": [
+            "integer x;",
+            "int x;",
+            "var x = int;",
+            "num x;"
+        ],
+        "correctAnswer": "int x;",
+        "explanation": "Java uses primitive type int for integer variables.",
+        "tags": [
+            "variables",
+            "data_types"
+        ]
+    },
+    {
+        "id": "Q0014",
+        "language": "java",
+        "topic": "oop",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which keyword is used to create an object in Java?",
+        "options": [
+            "create",
+            "new",
+            "make",
+            "object"
+        ],
+        "correctAnswer": "new",
+        "explanation": "The new keyword is used to instantiate objects in Java.",
+        "tags": [
+            "oop",
+            "objects"
+        ]
+    },
+    {
+        "id": "Q0015",
+        "language": "java",
+        "topic": "oop",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "Which concept allows a class to inherit properties from another class?",
+        "options": [
+            "Polymorphism",
+            "Inheritance",
+            "Encapsulation",
+            "Abstraction"
+        ],
+        "correctAnswer": "Inheritance",
+        "explanation": "Inheritance allows a child class to reuse methods and fields from a parent class.",
+        "tags": [
+            "oop",
+            "inheritance"
+        ]
+    },
+    {
+        "id": "Q0016",
+        "language": "java",
+        "topic": "strings",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "How do you compare two strings for equality in Java?",
+        "options": [
+            "==",
+            ".equals()",
+            ".compare()",
+            ".same()"
+        ],
+        "correctAnswer": ".equals()",
+        "explanation": "The .equals() method compares string content. == compares references.",
+        "tags": [
+            "strings",
+            "comparison"
+        ]
+    },
+    {
+        "id": "Q0017",
+        "language": "java",
+        "topic": "arrays",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "How do you get the length of an array in Java?",
+        "options": [
+            "arr.length()",
+            "arr.size()",
+            "arr.length",
+            "len(arr)"
+        ],
+        "correctAnswer": "arr.length",
+        "explanation": "Arrays in Java use the .length property (not a method).",
+        "tags": [
+            "arrays",
+            "data_structures"
+        ]
+    },
+    {
+        "id": "Q0018",
+        "language": "java",
+        "topic": "access_modifiers",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "Which access modifier makes a member accessible only within its own class?",
+        "options": [
+            "public",
+            "protected",
+            "private",
+            "default"
+        ],
+        "correctAnswer": "private",
+        "explanation": "Private members are only accessible within the defining class.",
+        "tags": [
+            "access_modifiers",
+            "oop"
+        ]
+    },
+    {
+        "id": "Q0019",
+        "language": "java",
+        "topic": "interfaces",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "Which keyword is used to implement an interface in Java?",
+        "options": [
+            "extends",
+            "implements",
+            "inherits",
+            "uses"
+        ],
+        "correctAnswer": "implements",
+        "explanation": "A class uses the implements keyword to implement an interface.",
+        "tags": [
+            "interfaces",
+            "oop"
+        ]
+    },
+    {
+        "id": "Q0020",
+        "language": "java",
+        "topic": "loops",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which loop guarantees at least one execution of the loop body?",
+        "options": [
+            "for",
+            "while",
+            "do-while",
+            "foreach"
+        ],
+        "correctAnswer": "do-while",
+        "explanation": "The do-while loop checks the condition after the body executes.",
+        "tags": [
+            "loops",
+            "control_flow"
+        ]
+    },
+    {
+        "id": "Q0021",
+        "language": "java",
+        "topic": "exceptions",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "What is the parent class of all exceptions in Java?",
+        "options": [
+            "Error",
+            "Exception",
+            "Throwable",
+            "RuntimeException"
+        ],
+        "correctAnswer": "Throwable",
+        "explanation": "Throwable is the root class for all errors and exceptions in Java.",
+        "tags": [
+            "exceptions",
+            "error_handling"
+        ]
+    },
+    {
+        "id": "Q0022",
+        "language": "java",
+        "topic": "collections",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "Which collection does not allow duplicate elements?",
+        "options": [
+            "ArrayList",
+            "LinkedList",
+            "HashSet",
+            "Vector"
+        ],
+        "correctAnswer": "HashSet",
+        "explanation": "A HashSet stores unique elements only, no duplicates allowed.",
+        "tags": [
+            "collections",
+            "data_structures"
+        ]
+    },
+    {
+        "id": "Q0023",
+        "language": "java",
+        "topic": "static",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "What does the 'static' keyword mean for a method in Java?",
+        "options": [
+            "The method cannot be changed",
+            "The method belongs to the class not instances",
+            "The method runs at startup",
+            "The method is private"
+        ],
+        "correctAnswer": "The method belongs to the class not instances",
+        "explanation": "Static methods belong to the class and can be called without an instance.",
+        "tags": [
+            "static",
+            "oop"
+        ]
+    },
+    {
+        "id": "Q0024",
+        "language": "java",
+        "topic": "constructors",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What is a constructor in Java?",
+        "options": [
+            "A method that returns an object",
+            "A special method called when an object is created",
+            "A way to destroy objects",
+            "A static method"
+        ],
+        "correctAnswer": "A special method called when an object is created",
+        "explanation": "Constructors initialize objects and are called with the new keyword.",
+        "tags": [
+            "constructors",
+            "oop"
+        ]
+    },
+    {
+        "id": "Q0025",
+        "language": "c",
+        "topic": "basics",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which function is the entry point of a C program?",
+        "options": [
+            "start()",
+            "begin()",
+            "main()",
+            "run()"
+        ],
+        "correctAnswer": "main()",
+        "explanation": "Every C program starts execution from the main() function.",
+        "tags": [
+            "basics",
+            "functions"
+        ]
+    },
+    {
+        "id": "Q0026",
+        "language": "c",
+        "topic": "data_types",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which data type is used to store a single character in C?",
+        "options": [
+            "string",
+            "char",
+            "character",
+            "text"
+        ],
+        "correctAnswer": "char",
+        "explanation": "The char data type stores a single character in C.",
+        "tags": [
+            "data_types",
+            "basics"
+        ]
+    },
+    {
+        "id": "Q0027",
+        "language": "c",
+        "topic": "pointers",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "What does the * operator do when used with a pointer?",
+        "options": [
+            "Multiplies",
+            "Dereferences the pointer",
+            "Creates a pointer",
+            "Gets the address"
+        ],
+        "correctAnswer": "Dereferences the pointer",
+        "explanation": "The * operator accesses the value at the memory address stored in the pointer.",
+        "tags": [
+            "pointers",
+            "memory"
+        ]
+    },
+    {
+        "id": "Q0028",
+        "language": "c",
+        "topic": "io",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which function is used to print output in C?",
+        "options": [
+            "print()",
+            "cout",
+            "printf()",
+            "echo()"
+        ],
+        "correctAnswer": "printf()",
+        "explanation": "printf() is the standard output function in C.",
+        "tags": [
+            "io",
+            "basics"
+        ]
+    },
+    {
+        "id": "Q0029",
+        "language": "c",
+        "topic": "arrays",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What is the index of the first element in a C array?",
+        "options": [
+            "1",
+            "0",
+            "-1",
+            "Depends on declaration"
+        ],
+        "correctAnswer": "0",
+        "explanation": "C arrays are zero-indexed, so the first element is at index 0.",
+        "tags": [
+            "arrays",
+            "data_structures"
+        ]
+    },
+    {
+        "id": "Q0030",
+        "language": "c",
+        "topic": "memory",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "Which function is used to dynamically allocate memory in C?",
+        "options": [
+            "alloc()",
+            "new",
+            "malloc()",
+            "create()"
+        ],
+        "correctAnswer": "malloc()",
+        "explanation": "malloc() allocates a block of memory from the heap.",
+        "tags": [
+            "memory",
+            "dynamic_allocation"
+        ]
+    },
+    {
+        "id": "Q0031",
+        "language": "c",
+        "topic": "strings",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "Which header file is needed for string functions in C?",
+        "options": [
+            "<strings.h>",
+            "<string.h>",
+            "<str.h>",
+            "<text.h>"
+        ],
+        "correctAnswer": "<string.h>",
+        "explanation": "string.h contains declarations for string manipulation functions.",
+        "tags": [
+            "strings",
+            "headers"
+        ]
+    },
+    {
+        "id": "Q0032",
+        "language": "c",
+        "topic": "preprocessor",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What does #include do in C?",
+        "options": [
+            "Defines a function",
+            "Includes a header file",
+            "Creates a variable",
+            "Starts a loop"
+        ],
+        "correctAnswer": "Includes a header file",
+        "explanation": "#include is a preprocessor directive that inserts the contents of a header file.",
+        "tags": [
+            "preprocessor",
+            "basics"
+        ]
+    },
+    {
+        "id": "Q0033",
+        "language": "c",
+        "topic": "structs",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "What keyword is used to define a structure in C?",
+        "options": [
+            "class",
+            "struct",
+            "record",
+            "object"
+        ],
+        "correctAnswer": "struct",
+        "explanation": "The struct keyword defines a structure to group related variables.",
+        "tags": [
+            "structs",
+            "data_types"
+        ]
+    },
+    {
+        "id": "Q0034",
+        "language": "c",
+        "topic": "operators",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What does the & operator return when used with a variable in C?",
+        "options": [
+            "The value",
+            "The address",
+            "The size",
+            "The type"
+        ],
+        "correctAnswer": "The address",
+        "explanation": "The & operator returns the memory address of a variable.",
+        "tags": [
+            "operators",
+            "pointers"
+        ]
+    },
+    {
+        "id": "Q0035",
+        "language": "c",
+        "topic": "loops",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which statement exits a loop immediately in C?",
+        "options": [
+            "exit",
+            "break",
+            "stop",
+            "return"
+        ],
+        "correctAnswer": "break",
+        "explanation": "The break statement terminates the nearest enclosing loop.",
+        "tags": [
+            "loops",
+            "control_flow"
+        ]
+    },
+    {
+        "id": "Q0036",
+        "language": "c",
+        "topic": "functions",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "What does a void function return?",
+        "options": [
+            "0",
+            "null",
+            "Nothing",
+            "An empty string"
+        ],
+        "correctAnswer": "Nothing",
+        "explanation": "A void function does not return any value.",
+        "tags": [
+            "functions",
+            "basics"
+        ]
+    },
+    {
+        "id": "Q0037",
+        "language": "data_structures",
+        "topic": "stacks",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which principle does a stack follow?",
+        "options": [
+            "FIFO",
+            "LIFO",
+            "Random",
+            "Priority"
+        ],
+        "correctAnswer": "LIFO",
+        "explanation": "Stacks follow Last-In-First-Out: the last element added is the first removed.",
+        "tags": [
+            "stacks",
+            "linear_structures"
+        ]
+    },
+    {
+        "id": "Q0038",
+        "language": "data_structures",
+        "topic": "queues",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which principle does a queue follow?",
+        "options": [
+            "LIFO",
+            "FIFO",
+            "Random",
+            "LILO"
+        ],
+        "correctAnswer": "FIFO",
+        "explanation": "Queues follow First-In-First-Out: the first element added is the first removed.",
+        "tags": [
+            "queues",
+            "linear_structures"
+        ]
+    },
+    {
+        "id": "Q0039",
+        "language": "data_structures",
+        "topic": "linked_lists",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What does a node in a singly linked list contain?",
+        "options": [
+            "Only data",
+            "Data and a pointer to the next node",
+            "Data and two pointers",
+            "Only a pointer"
+        ],
+        "correctAnswer": "Data and a pointer to the next node",
+        "explanation": "Each node holds data and a reference (pointer) to the next node.",
+        "tags": [
+            "linked_lists",
+            "linear_structures"
+        ]
+    },
+    {
+        "id": "Q0040",
+        "language": "data_structures",
+        "topic": "arrays",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What is the time complexity of accessing an element by index in an array?",
+        "options": [
+            "O(1)",
+            "O(n)",
+            "O(log n)",
+            "O(n²)"
+        ],
+        "correctAnswer": "O(1)",
+        "explanation": "Arrays provide constant-time access by index due to contiguous memory.",
+        "tags": [
+            "arrays",
+            "complexity"
+        ]
+    },
+    {
+        "id": "Q0041",
+        "language": "data_structures",
+        "topic": "trees",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "What is the maximum number of children a node can have in a binary tree?",
+        "options": [
+            "1",
+            "2",
+            "3",
+            "Unlimited"
+        ],
+        "correctAnswer": "2",
+        "explanation": "A binary tree node can have at most two children: left and right.",
+        "tags": [
+            "trees",
+            "binary_tree"
+        ]
+    },
+    {
+        "id": "Q0042",
+        "language": "data_structures",
+        "topic": "sorting",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "What is the best-case time complexity of bubble sort?",
+        "options": [
+            "O(n²)",
+            "O(n)",
+            "O(n log n)",
+            "O(1)"
+        ],
+        "correctAnswer": "O(n)",
+        "explanation": "With an optimized flag, bubble sort can detect a sorted array in O(n).",
+        "tags": [
+            "sorting",
+            "algorithms"
+        ]
+    },
+    {
+        "id": "Q0043",
+        "language": "data_structures",
+        "topic": "hash_tables",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "What is the average time complexity of lookup in a hash table?",
+        "options": [
+            "O(n)",
+            "O(1)",
+            "O(log n)",
+            "O(n²)"
+        ],
+        "correctAnswer": "O(1)",
+        "explanation": "Hash tables provide constant-time average lookup via hashing.",
+        "tags": [
+            "hash_tables",
+            "complexity"
+        ]
+    },
+    {
+        "id": "Q0044",
+        "language": "data_structures",
+        "topic": "graphs",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "Which algorithm is used for shortest path in an unweighted graph?",
+        "options": [
+            "DFS",
+            "BFS",
+            "Dijkstra",
+            "Prim's"
+        ],
+        "correctAnswer": "BFS",
+        "explanation": "BFS finds the shortest path in unweighted graphs by exploring level-by-level.",
+        "tags": [
+            "graphs",
+            "algorithms"
+        ]
+    },
+    {
+        "id": "Q0045",
+        "language": "data_structures",
+        "topic": "recursion",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What is a base case in recursion?",
+        "options": [
+            "The first call",
+            "The condition that stops recursion",
+            "The recursive call",
+            "The return value"
+        ],
+        "correctAnswer": "The condition that stops recursion",
+        "explanation": "A base case prevents infinite recursion by providing a stopping condition.",
+        "tags": [
+            "recursion",
+            "algorithms"
+        ]
+    },
+    {
+        "id": "Q0046",
+        "language": "data_structures",
+        "topic": "searching",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What is the time complexity of binary search?",
+        "options": [
+            "O(n)",
+            "O(1)",
+            "O(log n)",
+            "O(n²)"
+        ],
+        "correctAnswer": "O(log n)",
+        "explanation": "Binary search halves the search space each step, giving O(log n).",
+        "tags": [
+            "searching",
+            "algorithms"
+        ]
+    },
+    {
+        "id": "Q0047",
+        "language": "data_structures",
+        "topic": "heaps",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "In a max-heap, the root node contains?",
+        "options": [
+            "The smallest element",
+            "The largest element",
+            "A random element",
+            "The median"
+        ],
+        "correctAnswer": "The largest element",
+        "explanation": "In a max-heap, every parent is greater than or equal to its children.",
+        "tags": [
+            "heaps",
+            "trees"
+        ]
+    },
+    {
+        "id": "Q0048",
+        "language": "data_structures",
+        "topic": "stacks",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "Which operation adds an element to the top of a stack?",
+        "options": [
+            "enqueue",
+            "push",
+            "insert",
+            "add"
+        ],
+        "correctAnswer": "push",
+        "explanation": "Push adds an element to the top of the stack.",
+        "tags": [
+            "stacks",
+            "operations"
+        ]
+    },
+    {
+        "id": "Q0049",
+        "language": "python",
+        "topic": "file_handling",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "Which mode opens a file for reading only in Python?",
+        "options": [
+            "'w'",
+            "'r'",
+            "'a'",
+            "'x'"
+        ],
+        "correctAnswer": "'r'",
+        "explanation": "The 'r' mode opens a file for reading (default mode).",
+        "tags": [
+            "file_handling",
+            "io"
+        ]
+    },
+    {
+        "id": "Q0050",
+        "language": "python",
+        "topic": "tuples",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Can you modify elements of a tuple after creation?",
+        "options": [
+            "Yes",
+            "No",
+            "Only the first element",
+            "Only with special methods"
+        ],
+        "correctAnswer": "No",
+        "explanation": "Tuples are immutable — their elements cannot be changed after creation.",
+        "tags": [
+            "tuples",
+            "data_structures"
+        ]
+    },
+    {
+        "id": "Q0051",
+        "language": "c",
+        "topic": "basics",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What is the correct way to declare an integer variable in C?",
+        "options": [
+            "int x;",
+            "integer x;",
+            "x : int;",
+            "var x;"
+        ],
+        "correctAnswer": "int x;",
+        "explanation": "In C, you use the 'int' keyword followed by the variable name.",
+        "tags": [
+            "basics",
+            "syntax"
+        ]
+    },
+    {
+        "id": "Q0052",
+        "language": "c",
+        "topic": "syntax",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Every statement in C must end with which character?",
+        "options": [
+            ":",
+            ".",
+            ";",
+            "#"
+        ],
+        "correctAnswer": ";",
+        "explanation": "C uses semicolons to terminate statements.",
+        "tags": [
+            "syntax",
+            "basics"
+        ]
+    },
+    {
+        "id": "Q0053",
+        "language": "c",
+        "topic": "data_types",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which of these is NOT a valid data type in C?",
+        "options": [
+            "float",
+            "double",
+            "boolean",
+            "char"
+        ],
+        "correctAnswer": "boolean",
+        "explanation": "Standard C (C89/C90) does not have a built-in 'boolean' type; it uses integers (0 for false, non-zero for true). C99 introduced _Bool via <stdbool.h>.",
+        "tags": [
+            "data_types",
+            "basics"
+        ]
+    },
+    {
+        "id": "Q0054",
+        "language": "c",
+        "topic": "basics",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "What is the escape sequence for a newline in C?",
+        "options": [
+            "\\t",
+            "\\r",
+            "\\n",
+            "\\b"
+        ],
+        "correctAnswer": "\\n",
+        "explanation": "\\n is the escape sequence for a newline character.",
+        "tags": [
+            "basics",
+            "strings"
+        ]
+    },
+    {
+        "id": "Q0055",
+        "language": "c",
+        "topic": "syntax",
+        "difficulty": "easy",
+        "type": "mcq",
+        "question": "Which of the following is used for single-line comments in modern C (C99+)?",
+        "options": [
+            "#",
+            "/*",
+            "//",
+            "--"
+        ],
+        "correctAnswer": "//",
+        "explanation": "// is used for single-line comments since C99.",
+        "tags": [
+            "syntax",
+            "comments"
+        ]
+    },
+    {
+        "id": "Q0056",
+        "language": "c",
+        "topic": "pointers",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "What is a NULL pointer in C?",
+        "options": [
+            "A pointer that points to the zero address",
+            "A pointer that is not initialized",
+            "A pointer to a void function",
+            "An invalid pointer"
+        ],
+        "correctAnswer": "A pointer that points to the zero address",
+        "explanation": "A NULL pointer is a pointer that is assigned a value of 0 or NULL, indicating it doesn't point to any valid memory location.",
+        "tags": [
+            "pointers",
+            "basics"
+        ]
+    },
+    {
+        "id": "Q0057",
+        "language": "c",
+        "topic": "pointers",
+        "difficulty": "hard",
+        "type": "mcq",
+        "question": "Which of these is the correct way to declare a pointer to an integer?",
+        "options": [
+            "int &ptr;",
+            "int *ptr;",
+            "int ptr*;",
+            "ptr int*;"
+        ],
+        "correctAnswer": "int *ptr;",
+        "explanation": "The asterisk (*) denotes a pointer type in C declarations.",
+        "tags": [
+            "pointers",
+            "syntax"
+        ]
+    },
+    {
+        "id": "Q0058",
+        "language": "c",
+        "topic": "arrays",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "How do you access the element at the second row and third column of a 2D array 'arr'?",
+        "options": [
+            "arr[2,3]",
+            "arr[1][2]",
+            "arr[2][3]",
+            "arr(1,2)"
+        ],
+        "correctAnswer": "arr[1][2]",
+        "explanation": "C uses zero-based indexing, so the second row is index 1 and the third column is index 2.",
+        "tags": [
+            "arrays",
+            "multi_dimensional"
+        ]
+    },
+    {
+        "id": "Q0059",
+        "language": "c",
+        "topic": "strings",
+        "difficulty": "medium",
+        "type": "mcq",
+        "question": "Which constant is used to mark the end of a string in C?",
+        "options": [
+            "\\n",
+            "\\s",
+            "\\0",
+            "\\t"
+        ],
+        "correctAnswer": "\\0",
+        "explanation": "C strings are null-terminated, meaning they end with the null character \\0.",
+        "tags": [
+            "strings",
+            "basics"
+        ]
+    },
+    {
+        "id": "Q0060",
+        "language": "c",
+        "topic": "memory",
+        "difficulty": "hard",
+        "type": "mcq",
+        "question": "Which function is used to deallocate memory previously allocated with malloc?",
+        "options": [
+            "delete()",
+            "remove()",
+            "free()",
+            "clear()"
+        ],
+        "correctAnswer": "free()",
+        "explanation": "The free() function releases the memory block back to the heap.",
+        "tags": [
+            "memory",
+            "dynamic_allocation"
+        ]
+    }
+]

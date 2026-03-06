@@ -1,0 +1,76 @@
+[
+    {
+        "rank": "Bronze",
+        "divisions": [
+            "Bronze III",
+            "Bronze II",
+            "Bronze I"
+        ],
+        "minRR": 0,
+        "maxRR": 300,
+        "color": "#CD7F32"
+    },
+    {
+        "rank": "Silver",
+        "divisions": [
+            "Silver III",
+            "Silver II",
+            "Silver I"
+        ],
+        "minRR": 301,
+        "maxRR": 600,
+        "color": "#C0C0C0"
+    },
+    {
+        "rank": "Gold",
+        "divisions": [
+            "Gold III",
+            "Gold II",
+            "Gold I"
+        ],
+        "minRR": 601,
+        "maxRR": 1000,
+        "color": "#FFD700"
+    },
+    {
+        "rank": "Platinum",
+        "divisions": [
+            "Platinum III",
+            "Platinum II",
+            "Platinum I"
+        ],
+        "minRR": 1001,
+        "maxRR": 1500,
+        "color": "#E5E4E2"
+    },
+    {
+        "rank": "Diamond",
+        "divisions": [
+            "Diamond III",
+            "Diamond II",
+            "Diamond I"
+        ],
+        "minRR": 1501,
+        "maxRR": 2100,
+        "color": "#B9F2FF"
+    },
+    {
+        "rank": "Master",
+        "divisions": [
+            "Master II",
+            "Master I"
+        ],
+        "minRR": 2101,
+        "maxRR": 2800,
+        "color": "#FF4500"
+    },
+    {
+        "rank": "Grandmaster",
+        "divisions": [
+            "Grandmaster"
+        ],
+        "minRR": 2801,
+        "maxRR": 99999,
+        "color": "#B000FF"
+    }
+]

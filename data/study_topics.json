@@ -1,0 +1,62 @@
+[
+    {
+        "language": "python",
+        "topics": [
+            "Variables & Data Types",
+            "Loops (For, While)",
+            "Functions & Scoping",
+            "Lists & Tuples",
+            "Dictionaries & Sets",
+            "OOP Basics (Classes, Objects)",
+            "Exception Handling",
+            "File I/O",
+            "Decorators & Generators",
+            "Modules & Packages"
+        ]
+    },
+    {
+        "language": "java",
+        "topics": [
+            "Java Syntax & Basics",
+            "Classes & Objects",
+            "Inheritance & Polymorphism",
+            "Interfaces & Abstract Classes",
+            "Exception Handling",
+            "Java Collections Framework",
+            "Multithreading Basics",
+            "Java I/O Streams",
+            "Generics",
+            "Lambda Expressions"
+        ]
+    },
+    {
+        "language": "c",
+        "topics": [
+            "C Basics & Syntax",
+            "Functions & Parameters",
+            "Pointers & Memory Addresses",
+            "Arrays & Strings",
+            "Structures & Unions",
+            "Dynamic Memory Allocation",
+            "Preprocessors & Macros",
+            "File Handling",
+            "Bitwise Operators",
+            "Command Line Arguments"
+        ]
+    },
+    {
+        "language": "data_structures",
+        "topics": [
+            "Arrays & Dynamic Arrays",
+            "Linked Lists (Singly, Doubly)",
+            "Stacks & Queues",
+            "Hash Tables",
+            "Trees (Binary Search Trees, AVL)",
+            "Heaps & Priority Queues",
+            "Graphs & Traversals",
+            "Sorting Algorithms",
+            "Searching Algorithms",
+            "Recursion & Complexity (Big O)"
+        ]
+    }
+]

@@ -10,6 +10,10 @@ import { COLORS } from '../constants/theme';
 import LoginScreen from '../screens/auth/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import DashboardScreen from '../screens/DashboardScreen';
+import TopicSelectionScreen from '../screens/study/TopicSelectionScreen';
+import StudyTimerScreen from '../screens/study/StudyTimerScreen';
+import QuizScreen from '../screens/study/QuizScreen';
+import RewardScreen from '../screens/study/RewardScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,7 +48,14 @@ const AppNavigator = () => {
             >
                 {user ? (
                     // Authenticated screens
-                    <Stack.Screen name="Dashboard" component={DashboardScreen} />
+                    <>
+                        <Stack.Screen name="Dashboard" component={DashboardScreen} />
+                        {/* Study Mode Screens */}
+                        <Stack.Screen name="TopicSelection" component={TopicSelectionScreen} />
+                        <Stack.Screen name="StudyTimer" component={StudyTimerScreen} />
+                        <Stack.Screen name="Quiz" component={QuizScreen} />
+                        <Stack.Screen name="Reward" component={RewardScreen} />
+                    </>
                 ) : (
                     // Auth screens
                     <>

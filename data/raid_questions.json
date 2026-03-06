@@ -1,0 +1,262 @@
+[
+    {
+        "id": "RQ001",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "Which keyword defines a function in Python?",
+        "options": [
+            "func",
+            "def",
+            "function",
+            "define"
+        ],
+        "correctAnswer": "def"
+    },
+    {
+        "id": "RQ002",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "What does HTML stand for?",
+        "options": [
+            "Hyper Text Markup Language",
+            "High Tech Modern Language",
+            "Hyper Transfer Mode Link",
+            "Home Tool Markup Language"
+        ],
+        "correctAnswer": "Hyper Text Markup Language"
+    },
+    {
+        "id": "RQ003",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "Which symbol starts a comment in Python?",
+        "options": [
+            "//",
+            "#",
+            "/*",
+            "--"
+        ],
+        "correctAnswer": "#"
+    },
+    {
+        "id": "RQ004",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "What is 2^8?",
+        "options": [
+            "128",
+            "256",
+            "512",
+            "64"
+        ],
+        "correctAnswer": "256"
+    },
+    {
+        "id": "RQ005",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "Which data structure uses LIFO?",
+        "options": [
+            "Queue",
+            "Stack",
+            "Array",
+            "Tree"
+        ],
+        "correctAnswer": "Stack"
+    },
+    {
+        "id": "RQ006",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "What does CPU stand for?",
+        "options": [
+            "Central Processing Unit",
+            "Core Programming Utility",
+            "Computer Power Unit",
+            "Central Program Utility"
+        ],
+        "correctAnswer": "Central Processing Unit"
+    },
+    {
+        "id": "RQ007",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "What is the binary of decimal 5?",
+        "options": [
+            "100",
+            "101",
+            "110",
+            "111"
+        ],
+        "correctAnswer": "101"
+    },
+    {
+        "id": "RQ008",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "Which keyword is used for loops in Java?",
+        "options": [
+            "repeat",
+            "loop",
+            "for",
+            "iterate"
+        ],
+        "correctAnswer": "for"
+    },
+    {
+        "id": "RQ009",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "What is the index of the first element in most programming languages?",
+        "options": [
+            "1",
+            "0",
+            "-1",
+            "None"
+        ],
+        "correctAnswer": "0"
+    },
+    {
+        "id": "RQ010",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "Which operator is used for not-equal in Python?",
+        "options": [
+            "<>",
+            "!=",
+            "=/=",
+            "not="
+        ],
+        "correctAnswer": "!="
+    },
+    {
+        "id": "RQ011",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "What does IDE stand for?",
+        "options": [
+            "Integrated Development Environment",
+            "Internal Data Engine",
+            "Instant Debug Editor",
+            "Integer Data Entry"
+        ],
+        "correctAnswer": "Integrated Development Environment"
+    },
+    {
+        "id": "RQ012",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "Which language is known as the backbone of the web?",
+        "options": [
+            "Python",
+            "Java",
+            "JavaScript",
+            "C++"
+        ],
+        "correctAnswer": "JavaScript"
+    },
+    {
+        "id": "RQ013",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "What does NULL mean?",
+        "options": [
+            "Zero",
+            "Empty string",
+            "No value / nothing",
+            "False"
+        ],
+        "correctAnswer": "No value / nothing"
+    },
+    {
+        "id": "RQ014",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "How many bits are in a byte?",
+        "options": [
+            "4",
+            "8",
+            "16",
+            "32"
+        ],
+        "correctAnswer": "8"
+    },
+    {
+        "id": "RQ015",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "What type of language is SQL?",
+        "options": [
+            "Object-Oriented",
+            "Markup",
+            "Query",
+            "Scripting"
+        ],
+        "correctAnswer": "Query"
+    },
+    {
+        "id": "RQ016",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "Which sorting algorithm is the simplest?",
+        "options": [
+            "Quick Sort",
+            "Merge Sort",
+            "Bubble Sort",
+            "Heap Sort"
+        ],
+        "correctAnswer": "Bubble Sort"
+    },
+    {
+        "id": "RQ017",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "What does API stand for?",
+        "options": [
+            "Application Programming Interface",
+            "Automated Program Instruction",
+            "Advanced Programming Input",
+            "Application Process Integration"
+        ],
+        "correctAnswer": "Application Programming Interface"
+    },
+    {
+        "id": "RQ018",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "What is the output of: True AND False?",
+        "options": [
+            "True",
+            "False",
+            "Error",
+            "None"
+        ],
+        "correctAnswer": "False"
+    },
+    {
+        "id": "RQ019",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "What symbol ends a statement in Java and C?",
+        "options": [
+            ".",
+            ":",
+            ";",
+            ","
+        ],
+        "correctAnswer": ";"
+    },
+    {
+        "id": "RQ020",
+        "language": "general",
+        "difficulty": "easy",
+        "question": "What does RAM stand for?",
+        "options": [
+            "Read Access Memory",
+            "Random Access Memory",
+            "Run Application Memory",
+            "Rapid Action Module"
+        ],
+        "correctAnswer": "Random Access Memory"
+    }
+]

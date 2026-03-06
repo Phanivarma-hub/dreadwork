@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
     View,
     Text,
@@ -9,7 +10,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { signOut } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from '../config/firebase';
 import XPBar from '../components/XPBar';
 import RankBadge from '../components/RankBadge';
@@ -18,15 +19,33 @@ import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS, RANK_COLORS } from '../cons
 import { getXPForLevel } from '../constants/ranks';
 
 const DashboardScreen = () => {
+    const navigation = useNavigation();
     const [userData, setUserData] = useState(null);
     const [refreshing, setRefreshing] = useState(false);
 
-    const user = auth.currentUser;
+    useEffect(() => {
+        if (!auth.currentUser) return;
+
+        const userRef = doc(db, 'users', auth.currentUser.uid);
+
+        // Real-time listener
+        const unsubscribe = onSnapshot(userRef, (docSnap) => {
+            if (docSnap.exists()) {
+                console.log('Dashboard received update:', docSnap.data().xp);
+                setUserData(docSnap.data());
+            }
+        }, (error) => {
+            console.error('Firestore listener error:', error);
+        });
+
+        return () => unsubscribe(); // Cleanup on unmount
+    }, [auth.currentUser]);
 
     const fetchUserData = async () => {
-        if (!user) return;
+        // Fallback or manual refresh logic
+        if (!auth.currentUser) return;
         try {
-            const docRef = doc(db, 'users', user.uid);
+            const docRef = doc(db, 'users', auth.currentUser.uid);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 setUserData(docSnap.data());
@@ -35,10 +54,6 @@ const DashboardScreen = () => {
             console.error('Error fetching user data:', error);
         }
     };
-
-    useEffect(() => {
-        fetchUserData();
-    }, []);
 
     const onRefresh = async () => {
         setRefreshing(true);
@@ -61,7 +76,7 @@ const DashboardScreen = () => {
     const rankDivision = userData?.rankDivision || 'III';
     const coins = userData?.coins || 0;
     const streakDays = userData?.streakDays || 0;
-    const username = userData?.username || user?.displayName || 'Warrior';
+    const username = userData?.username || auth.currentUser?.displayName || 'Warrior';
     const rankColor = RANK_COLORS[rank] || RANK_COLORS.Bronze;
 
     return (
@@ -163,7 +178,11 @@ const DashboardScreen = () => {
                 {/* ── Quick Play Section ── */}
                 <Text style={styles.sectionTitle}>Quick Play</Text>
 
-                <TouchableOpacity activeOpacity={0.85} style={styles.modeCard}>
+                <TouchableOpacity
+                    activeOpacity={0.85}
+                    style={styles.modeCard}
+                    onPress={() => navigation.navigate('TopicSelection')}
+                >
                     <LinearGradient
                         colors={['#1E3A5F', '#1E293B']}
                         start={{ x: 0, y: 0 }}

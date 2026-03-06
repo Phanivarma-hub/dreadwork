@@ -75,3 +75,20 @@ export const FONT_SIZES = {
     xxl: 32,
     hero: 40,
 };
+
+// Unified theme object for easier usage in new screens
+export const theme = {
+    colors: {
+        background: [COLORS.bgPrimary, COLORS.bgSecondary],
+        surface: COLORS.bgSecondary,
+        primary: COLORS.primaryBlue,
+        accent: COLORS.cyan,
+        error: COLORS.dangerRed,
+        success: COLORS.successGreen,
+        text: COLORS.textPrimary,
+        textSecondary: COLORS.textSecondary,
+    },
+    spacing: SPACING,
+    borderRadius: BORDER_RADIUS,
+    fontSizes: FONT_SIZES,
+};

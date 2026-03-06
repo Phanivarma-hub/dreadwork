@@ -1,0 +1,122 @@
+[
+    {
+        "id": "EX001",
+        "language": "java",
+        "topic": "oop",
+        "difficulty": "medium",
+        "type": "explanation",
+        "question": "Explain inheritance in object oriented programming."
+    },
+    {
+        "id": "EX002",
+        "language": "java",
+        "topic": "oop",
+        "difficulty": "medium",
+        "type": "explanation",
+        "question": "What is polymorphism and how does it work in Java?"
+    },
+    {
+        "id": "EX003",
+        "language": "java",
+        "topic": "oop",
+        "difficulty": "medium",
+        "type": "explanation",
+        "question": "Explain the difference between an abstract class and an interface."
+    },
+    {
+        "id": "EX004",
+        "language": "python",
+        "topic": "basics",
+        "difficulty": "easy",
+        "type": "explanation",
+        "question": "What is the difference between a list and a tuple in Python?"
+    },
+    {
+        "id": "EX005",
+        "language": "python",
+        "topic": "oop",
+        "difficulty": "medium",
+        "type": "explanation",
+        "question": "Explain what a constructor (__init__) does in Python."
+    },
+    {
+        "id": "EX006",
+        "language": "c",
+        "topic": "pointers",
+        "difficulty": "medium",
+        "type": "explanation",
+        "question": "What is a pointer in C and why is it useful?"
+    },
+    {
+        "id": "EX007",
+        "language": "c",
+        "topic": "memory",
+        "difficulty": "hard",
+        "type": "explanation",
+        "question": "Explain the difference between stack memory and heap memory in C."
+    },
+    {
+        "id": "EX008",
+        "language": "data_structures",
+        "topic": "stacks",
+        "difficulty": "easy",
+        "type": "explanation",
+        "question": "Explain what a stack is and give a real-world example."
+    },
+    {
+        "id": "EX009",
+        "language": "data_structures",
+        "topic": "linked_lists",
+        "difficulty": "medium",
+        "type": "explanation",
+        "question": "What are the advantages of a linked list over an array?"
+    },
+    {
+        "id": "EX010",
+        "language": "data_structures",
+        "topic": "sorting",
+        "difficulty": "medium",
+        "type": "explanation",
+        "question": "Explain how bubble sort works step by step."
+    },
+    {
+        "id": "EX011",
+        "language": "data_structures",
+        "topic": "trees",
+        "difficulty": "medium",
+        "type": "explanation",
+        "question": "What is a binary search tree and what property must it satisfy?"
+    },
+    {
+        "id": "EX012",
+        "language": "java",
+        "topic": "exceptions",
+        "difficulty": "medium",
+        "type": "explanation",
+        "question": "What is the purpose of try-catch-finally in exception handling?"
+    },
+    {
+        "id": "EX013",
+        "language": "python",
+        "topic": "decorators",
+        "difficulty": "hard",
+        "type": "explanation",
+        "question": "What is a decorator in Python and when would you use one?"
+    },
+    {
+        "id": "EX014",
+        "language": "data_structures",
+        "topic": "complexity",
+        "difficulty": "medium",
+        "type": "explanation",
+        "question": "Explain what Big-O notation is and why it matters."
+    },
+    {
+        "id": "EX015",
+        "language": "java",
+        "topic": "oop",
+        "difficulty": "easy",
+        "type": "explanation",
+        "question": "What is encapsulation and why is it important?"
+    }
+]

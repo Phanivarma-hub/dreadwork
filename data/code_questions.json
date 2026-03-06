@@ -1,0 +1,402 @@
+[
+    {
+        "id": "CO001",
+        "language": "python",
+        "topic": "operators",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "print(2 + 3 * 4)",
+        "options": [
+            "14",
+            "20",
+            "24",
+            "10"
+        ],
+        "correctAnswer": "14",
+        "explanation": "Multiplication has higher precedence than addition. 3*4=12, 2+12=14.",
+        "tags": [
+            "operators",
+            "precedence"
+        ]
+    },
+    {
+        "id": "CO002",
+        "language": "python",
+        "topic": "strings",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "print('hello'[1])",
+        "options": [
+            "h",
+            "e",
+            "l",
+            "Error"
+        ],
+        "correctAnswer": "e",
+        "explanation": "String indexing is zero-based. Index 1 is the second character 'e'.",
+        "tags": [
+            "strings",
+            "indexing"
+        ]
+    },
+    {
+        "id": "CO003",
+        "language": "python",
+        "topic": "lists",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "x = [1, 2, 3]\nprint(x[-1])",
+        "options": [
+            "1",
+            "2",
+            "3",
+            "Error"
+        ],
+        "correctAnswer": "3",
+        "explanation": "Negative indexing: -1 refers to the last element.",
+        "tags": [
+            "lists",
+            "indexing"
+        ]
+    },
+    {
+        "id": "CO004",
+        "language": "python",
+        "topic": "loops",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "for i in range(3):\n    print(i, end=' ')",
+        "options": [
+            "1 2 3",
+            "0 1 2",
+            "0 1 2 3",
+            "1 2"
+        ],
+        "correctAnswer": "0 1 2",
+        "explanation": "range(3) generates 0, 1, 2.",
+        "tags": [
+            "loops",
+            "range"
+        ]
+    },
+    {
+        "id": "CO005",
+        "language": "python",
+        "topic": "booleans",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "print(bool(0))",
+        "options": [
+            "True",
+            "False",
+            "0",
+            "Error"
+        ],
+        "correctAnswer": "False",
+        "explanation": "0 is a falsy value in Python, so bool(0) returns False.",
+        "tags": [
+            "booleans",
+            "type_conversion"
+        ]
+    },
+    {
+        "id": "CO006",
+        "language": "python",
+        "topic": "strings",
+        "difficulty": "medium",
+        "type": "code_output",
+        "code": "s = 'Python'\nprint(s[1:4])",
+        "options": [
+            "Pyt",
+            "yth",
+            "ytho",
+            "Pyth"
+        ],
+        "correctAnswer": "yth",
+        "explanation": "Slicing s[1:4] gets characters at indices 1, 2, 3 → 'yth'.",
+        "tags": [
+            "strings",
+            "slicing"
+        ]
+    },
+    {
+        "id": "CO007",
+        "language": "python",
+        "topic": "functions",
+        "difficulty": "medium",
+        "type": "code_output",
+        "code": "def f(a, b=5):\n    return a + b\nprint(f(3))",
+        "options": [
+            "3",
+            "5",
+            "8",
+            "Error"
+        ],
+        "correctAnswer": "8",
+        "explanation": "b defaults to 5, so f(3) = 3 + 5 = 8.",
+        "tags": [
+            "functions",
+            "default_parameters"
+        ]
+    },
+    {
+        "id": "CO008",
+        "language": "python",
+        "topic": "lists",
+        "difficulty": "medium",
+        "type": "code_output",
+        "code": "a = [1, 2, 3]\nb = a\nb.append(4)\nprint(len(a))",
+        "options": [
+            "3",
+            "4",
+            "Error",
+            "1"
+        ],
+        "correctAnswer": "4",
+        "explanation": "b = a makes b reference the same list. Appending to b also affects a.",
+        "tags": [
+            "lists",
+            "references"
+        ]
+    },
+    {
+        "id": "CO009",
+        "language": "java",
+        "topic": "operators",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "int x = 10;\nSystem.out.println(x / 3);",
+        "options": [
+            "3.33",
+            "3",
+            "4",
+            "Error"
+        ],
+        "correctAnswer": "3",
+        "explanation": "Integer division in Java truncates the decimal part. 10/3 = 3.",
+        "tags": [
+            "operators",
+            "integer_division"
+        ]
+    },
+    {
+        "id": "CO010",
+        "language": "java",
+        "topic": "strings",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "String s = \"Hello\";\nSystem.out.println(s.length());",
+        "options": [
+            "4",
+            "5",
+            "6",
+            "Error"
+        ],
+        "correctAnswer": "5",
+        "explanation": "The length() method returns the number of characters: 5.",
+        "tags": [
+            "strings",
+            "methods"
+        ]
+    },
+    {
+        "id": "CO011",
+        "language": "java",
+        "topic": "arrays",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "int[] arr = {10, 20, 30};\nSystem.out.println(arr[1]);",
+        "options": [
+            "10",
+            "20",
+            "30",
+            "Error"
+        ],
+        "correctAnswer": "20",
+        "explanation": "Arrays are zero-indexed. arr[1] is the second element: 20.",
+        "tags": [
+            "arrays",
+            "indexing"
+        ]
+    },
+    {
+        "id": "CO012",
+        "language": "java",
+        "topic": "operators",
+        "difficulty": "medium",
+        "type": "code_output",
+        "code": "int a = 5;\nSystem.out.println(a++ + ++a);",
+        "options": [
+            "11",
+            "12",
+            "10",
+            "13"
+        ],
+        "correctAnswer": "12",
+        "explanation": "a++ returns 5 then a becomes 6, ++a makes a 7, so 5 + 7 = 12.",
+        "tags": [
+            "operators",
+            "increment"
+        ]
+    },
+    {
+        "id": "CO013",
+        "language": "c",
+        "topic": "operators",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "int a = 10, b = 3;\nprintf(\"%d\", a % b);",
+        "options": [
+            "3",
+            "1",
+            "0",
+            "3.33"
+        ],
+        "correctAnswer": "1",
+        "explanation": "The modulus operator returns the remainder: 10 % 3 = 1.",
+        "tags": [
+            "operators",
+            "modulus"
+        ]
+    },
+    {
+        "id": "CO014",
+        "language": "c",
+        "topic": "data_types",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "char c = 'A';\nprintf(\"%d\", c);",
+        "options": [
+            "A",
+            "65",
+            "97",
+            "Error"
+        ],
+        "correctAnswer": "65",
+        "explanation": "Printing a char with %d gives its ASCII value. 'A' = 65.",
+        "tags": [
+            "data_types",
+            "ascii"
+        ]
+    },
+    {
+        "id": "CO015",
+        "language": "c",
+        "topic": "pointers",
+        "difficulty": "medium",
+        "type": "code_output",
+        "code": "int x = 42;\nint *p = &x;\nprintf(\"%d\", *p);",
+        "options": [
+            "Memory address",
+            "42",
+            "0",
+            "Error"
+        ],
+        "correctAnswer": "42",
+        "explanation": "The * operator dereferences p, giving the value at x's address: 42.",
+        "tags": [
+            "pointers",
+            "dereferencing"
+        ]
+    },
+    {
+        "id": "CO016",
+        "language": "c",
+        "topic": "arrays",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "int arr[] = {5, 10, 15};\nprintf(\"%d\", arr[2]);",
+        "options": [
+            "5",
+            "10",
+            "15",
+            "Error"
+        ],
+        "correctAnswer": "15",
+        "explanation": "arr[2] accesses the third element (zero-indexed): 15.",
+        "tags": [
+            "arrays",
+            "indexing"
+        ]
+    },
+    {
+        "id": "CO017",
+        "language": "python",
+        "topic": "dictionaries",
+        "difficulty": "medium",
+        "type": "code_output",
+        "code": "d = {'a': 1, 'b': 2}\nprint(d.get('c', 0))",
+        "options": [
+            "None",
+            "0",
+            "Error",
+            "c"
+        ],
+        "correctAnswer": "0",
+        "explanation": "dict.get() returns the default value (0) when the key is not found.",
+        "tags": [
+            "dictionaries",
+            "methods"
+        ]
+    },
+    {
+        "id": "CO018",
+        "language": "python",
+        "topic": "strings",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "print('ha' * 3)",
+        "options": [
+            "ha3",
+            "hahaha",
+            "ha ha ha",
+            "Error"
+        ],
+        "correctAnswer": "hahaha",
+        "explanation": "The * operator repeats a string. 'ha' * 3 = 'hahaha'.",
+        "tags": [
+            "strings",
+            "operators"
+        ]
+    },
+    {
+        "id": "CO019",
+        "language": "java",
+        "topic": "conditionals",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "int x = 7;\nSystem.out.println(x > 5 ? \"Yes\" : \"No\");",
+        "options": [
+            "Yes",
+            "No",
+            "7",
+            "Error"
+        ],
+        "correctAnswer": "Yes",
+        "explanation": "Ternary operator: 7 > 5 is true, so it prints 'Yes'.",
+        "tags": [
+            "conditionals",
+            "ternary"
+        ]
+    },
+    {
+        "id": "CO020",
+        "language": "python",
+        "topic": "type_conversion",
+        "difficulty": "easy",
+        "type": "code_output",
+        "code": "print(int('42') + 8)",
+        "options": [
+            "428",
+            "50",
+            "Error",
+            "42 8"
+        ],
+        "correctAnswer": "50",
+        "explanation": "int('42') converts the string to integer 42, then 42 + 8 = 50.",
+        "tags": [
+            "type_conversion",
+            "casting"
+        ]
+    }
+]

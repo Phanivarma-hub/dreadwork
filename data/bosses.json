@@ -1,0 +1,38 @@
+[
+    {
+        "bossId": "null_pointer",
+        "name": "Null Pointer Spectre",
+        "hp": 5000,
+        "difficulty": "easy",
+        "rewardXP": 150,
+        "rewardCoins": 200,
+        "description": "A ghost of a variable that points to nothing. Be quick before it disappears!"
+    },
+    {
+        "bossId": "compiler",
+        "name": "The Great Compiler",
+        "hp": 20000,
+        "difficulty": "medium",
+        "rewardXP": 500,
+        "rewardCoins": 800,
+        "description": "It judges every line of code you write. No syntax error goes unpunished."
+    },
+    {
+        "bossId": "memory_leak",
+        "name": "Memory Leak Hydra",
+        "hp": 50000,
+        "difficulty": "hard",
+        "rewardXP": 1200,
+        "rewardCoins": 2000,
+        "description": "For every bit you free, two more leak. A true test of endurance."
+    },
+    {
+        "bossId": "os_kernel",
+        "name": "Lord of the Kernel",
+        "hp": 150000,
+        "difficulty": "legendary",
+        "rewardXP": 5000,
+        "rewardCoins": 10000,
+        "description": "The ultimate authority. It controls everything your code touches."
+    }
+]
