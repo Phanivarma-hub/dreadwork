@@ -1,0 +1,60 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users: authenticated users can read/write their own document
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Inventory: users can read/write their own inventory
+    match /inventory/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Questions: any authenticated user can read
+    match /questions/{questionId} {
+      allow read: if request.auth != null;
+    }
+
+    // Shop items: any authenticated user can read
+    match /shopItems/{itemId} {
+      allow read: if request.auth != null;
+    }
+
+    // Matches: authenticated users can read/write
+    match /matches/{matchId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Battle Royale: authenticated users can read/write
+    match /battleRoyaleMatches/{matchId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Raid sessions: authenticated users can read/write
+    match /raidSessions/{raidId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Leaderboards: any authenticated user can read
+    match /leaderboards/{entry} {
+      allow read: if request.auth != null;
+    }
+
+    // Matchmaking queue: authenticated users can read/write
+    match /matchmakingQueue/{queueId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // User rewards/streaks: users can read/write their own
+    match /userRewards/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Friends: authenticated users can read/write
+    match /friends/{docId} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

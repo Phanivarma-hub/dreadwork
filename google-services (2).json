@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "644339421366",
+    "project_id": "dreadworrk",
+    "storage_bucket": "dreadworrk.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644339421366:android:c4a6c0b24f0f4af9ff9617",
+        "android_client_info": {
+          "package_name": "com.dreadwork.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZwd9ASxMJXGcmB81EfbM8mVMJmCoI-EQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
