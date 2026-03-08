@@ -200,7 +200,7 @@ const DashboardScreen = () => {
                     </LinearGradient>
                 </TouchableOpacity>
 
-                <TouchableOpacity activeOpacity={0.85} style={styles.modeCard}>
+                <TouchableOpacity activeOpacity={0.85} style={styles.modeCard} onPress={() => navigation.navigate('DuelLobby')}>
                     <LinearGradient
                         colors={['#3B1F5E', '#1E293B']}
                         start={{ x: 0, y: 0 }}

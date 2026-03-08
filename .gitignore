@@ -41,3 +41,6 @@ yarn-error.*
 /android
 Revised_SRS_DreadWork.md
 apikeys.md
+
+server/server.js
+server/.env

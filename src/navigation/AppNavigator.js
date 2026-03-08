@@ -14,6 +14,9 @@ import TopicSelectionScreen from '../screens/study/TopicSelectionScreen';
 import StudyTimerScreen from '../screens/study/StudyTimerScreen';
 import QuizScreen from '../screens/study/QuizScreen';
 import RewardScreen from '../screens/study/RewardScreen';
+import DuelLobbyScreen from '../screens/duel/DuelLobbyScreen';
+import DuelBattleScreen from '../screens/duel/DuelBattleScreen';
+import DuelResultScreen from '../screens/duel/DuelResultScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +58,10 @@ const AppNavigator = () => {
                         <Stack.Screen name="StudyTimer" component={StudyTimerScreen} />
                         <Stack.Screen name="Quiz" component={QuizScreen} />
                         <Stack.Screen name="Reward" component={RewardScreen} />
+                        {/* Duel Mode Screens */}
+                        <Stack.Screen name="DuelLobby" component={DuelLobbyScreen} />
+                        <Stack.Screen name="DuelBattle" component={DuelBattleScreen} />
+                        <Stack.Screen name="DuelResult" component={DuelResultScreen} />
                     </>
                 ) : (
                     // Auth screens

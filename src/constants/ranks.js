@@ -59,3 +59,31 @@ export const getRankByName = (rankName) => {
 export const getXPForLevel = (level) => {
     return Math.floor(100 * Math.pow(level, 1.5));
 };
+
+// Convert total RR to rank name + division
+export const getRankFromRR = (totalRR) => {
+    const rr = Math.max(0, totalRR);
+    for (let i = RANKS.length - 1; i >= 0; i--) {
+        if (rr >= RANKS[i].minRR) {
+            const rrInTier = rr - RANKS[i].minRR;
+            const divisionSize = (RANKS[i].maxRR - RANKS[i].minRR) / 3;
+            let divIndex = Math.min(2, Math.floor(rrInTier / divisionSize));
+            const divisions = ['III', 'II', 'I'];
+            return {
+                rank: RANKS[i].name,
+                rankDivision: divisions[divIndex],
+                color: RANKS[i].color,
+            };
+        }
+    }
+    return { rank: 'Bronze', rankDivision: 'III', color: RANKS[0].color };
+};
+
+// Calculate new RR and rank after a duel match
+// Win: +25 RR, Loss: -15 RR (from SRS Section 10)
+export const updateRankAfterMatch = (currentRR, isWin) => {
+    const rrChange = isWin ? 25 : -15;
+    const newRR = Math.max(0, currentRR + rrChange);
+    const { rank, rankDivision } = getRankFromRR(newRR);
+    return { rankPoints: newRR, rank, rankDivision, rrChange };
+};
