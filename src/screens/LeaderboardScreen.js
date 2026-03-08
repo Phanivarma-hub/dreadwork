@@ -147,7 +147,7 @@ const LeaderboardScreen = () => {
 
 const styles = StyleSheet.create({
     container: { flex: 1 },
-    safeArea: { flex: 1, paddingTop: 10 },
+    safeArea: { flex: 1, paddingTop: SPACING.xl, paddingBottom: SPACING.xl },
     header: {
         flexDirection: 'row',
         alignItems: 'center',

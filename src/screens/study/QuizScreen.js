@@ -6,6 +6,7 @@ import { theme, COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../../constan
 import mcqQuestions from '../../../data/mcq_questions.json';
 import { db } from '../../config/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
+import soundService from '../../services/soundService';
 
 const QuizScreen = () => {
     const navigation = useNavigation();
@@ -112,6 +113,9 @@ const QuizScreen = () => {
         const currentQuestion = questions[currentQuestionIndex];
         if (option === currentQuestion.correctAnswer) {
             setScore(prev => prev + 1);
+            soundService.playSound('correct');
+        } else {
+            soundService.playSound('wrong');
         }
 
         setTimeout(() => {
@@ -256,6 +260,8 @@ const styles = StyleSheet.create({
     },
     safeArea: {
         flex: 1,
+        paddingTop: SPACING.lg,
+        paddingBottom: SPACING.lg,
     },
     center: {
         flex: 1,

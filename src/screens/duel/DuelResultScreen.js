@@ -10,6 +10,7 @@ import { updateChallengeProgress } from '../../services/userService';
 import { CHALLENGE_TYPES } from '../../constants/challenges';
 import GameButton from '../../components/GameButton';
 import RankUpdateCard from '../../components/RankUpdateCard';
+import soundService from '../../services/soundService';
 
 const DuelResultScreen = () => {
     const navigation = useNavigation();
@@ -57,6 +58,12 @@ const DuelResultScreen = () => {
         ).start();
 
         applyRewards();
+
+        if (playerWon) {
+            soundService.playSound('win');
+        } else if (!isDraw) {
+            soundService.playSound('gameover');
+        }
     }, []);
 
     const applyRewards = async () => {
@@ -115,6 +122,18 @@ const DuelResultScreen = () => {
                     setRrData({ oldRR: currentRR, newRR: result.rankPoints });
                     setRewards(prev => ({ ...prev, rr: result.rrChange }));
 
+                    // Play ranking sound
+                    soundService.playSound('ranking');
+
+                    // Check for rank up
+                    if (result.rank !== data.rank || result.rankDivision !== data.rankDivision) {
+                        // Only play rankup sound if it's actually an improvement or just any change as requested
+                        // "Bronze 1 to Bronze 2" is a rank up in numeric terms (I is higher than II in this system?)
+                        // Actually in most games I > II > III. In ranks.js: divisions: ['Bronze III', 'Bronze II', 'Bronze I']
+                        // So III -> II is a rank up.
+                        soundService.playSound('rankup');
+                    }
+
                     // Animate RR counting
                     const rrAbs = Math.abs(result.rrChange);
                     let rrStep = 0;
@@ -150,6 +169,7 @@ const DuelResultScreen = () => {
 
                 if (levelGained) {
                     setLevelUp(true);
+                    soundService.playSound('levelup');
                     Animated.sequence([
                         Animated.spring(levelUpScale, {
                             toValue: 1.3, tension: 100, friction: 4, useNativeDriver: true,
@@ -283,7 +303,11 @@ const DuelResultScreen = () => {
 
 const styles = StyleSheet.create({
     container: { flex: 1 },
-    safeArea: { flex: 1 },
+    safeArea: {
+        flex: 1,
+        paddingTop: SPACING.lg,
+        paddingBottom: SPACING.lg,
+    },
     scrollView: { flex: 1 },
     scrollContent: { flexGrow: 1 },
     content: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 30, paddingVertical: SPACING.xl },

@@ -269,7 +269,11 @@ const DuelLobbyScreen = () => {
 
 const styles = StyleSheet.create({
     container: { flex: 1 },
-    safeArea: { flex: 1 },
+    safeArea: {
+        flex: 1,
+        paddingTop: SPACING.lg,
+        paddingBottom: SPACING.lg,
+    },
 
     // Header
     header: {

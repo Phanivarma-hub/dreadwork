@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS } from '../constants/theme';
+import soundService from '../services/soundService';
 
 const { width } = Dimensions.get('window');
 
@@ -18,6 +19,9 @@ const LoadingScreen = () => {
     const pulseAnim = useRef(new Animated.Value(1)).current;
 
     useEffect(() => {
+        // Play logo sound
+        soundService.playLogoSound();
+
         // Entrance animation
         Animated.parallel([
             Animated.timing(fadeAnim, {

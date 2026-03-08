@@ -32,10 +32,10 @@ const AppNavigator = () => {
     const [timedOut, setTimedOut] = useState(false);
 
     useEffect(() => {
-        // Minimum 3 second delay for branding
+        // Minimum 6 second delay for branding
         const timer = setTimeout(() => {
             setTimedOut(true);
-        }, 3000);
+        }, 6000);
 
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);

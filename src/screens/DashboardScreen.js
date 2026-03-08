@@ -333,7 +333,7 @@ const DashboardScreen = () => {
                     style={styles.logoutBtn}
                 />
 
-                <View style={{ height: SPACING.xxl }} />
+                <View style={{ height: SPACING.xxl * 2 }} />
             </ScrollView>
         </View>
     );
@@ -347,6 +347,7 @@ const styles = StyleSheet.create({
     scrollContent: {
         padding: SPACING.md,
         paddingTop: SPACING.xxl + SPACING.md,
+        paddingBottom: SPACING.xxl,
     },
 
     // Header

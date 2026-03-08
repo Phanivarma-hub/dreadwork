@@ -2,6 +2,7 @@ import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS, BORDER_RADIUS, SPACING, FONT_SIZES } from '../constants/theme';
+import soundService from '../services/soundService';
 
 const GameButton = ({
     title,
@@ -13,10 +14,15 @@ const GameButton = ({
     style,
     textStyle,
 }) => {
+    const handlePress = () => {
+        soundService.playSound('click');
+        if (onPress) onPress();
+    };
+
     if (variant === 'primary') {
         return (
             <TouchableOpacity
-                onPress={onPress}
+                onPress={handlePress}
                 disabled={disabled || loading}
                 activeOpacity={0.8}
                 style={[disabled && styles.disabled, style]}
@@ -43,7 +49,7 @@ const GameButton = ({
     if (variant === 'secondary') {
         return (
             <TouchableOpacity
-                onPress={onPress}
+                onPress={handlePress}
                 disabled={disabled || loading}
                 activeOpacity={0.8}
                 style={[styles.secondaryBtn, disabled && styles.disabled, style]}
@@ -63,7 +69,7 @@ const GameButton = ({
     if (variant === 'danger') {
         return (
             <TouchableOpacity
-                onPress={onPress}
+                onPress={handlePress}
                 disabled={disabled || loading}
                 activeOpacity={0.8}
                 style={[styles.dangerBtn, disabled && styles.disabled, style]}
@@ -83,7 +89,7 @@ const GameButton = ({
     // ghost variant
     return (
         <TouchableOpacity
-            onPress={onPress}
+            onPress={handlePress}
             disabled={disabled || loading}
             activeOpacity={0.7}
             style={[styles.ghostBtn, disabled && styles.disabled, style]}

@@ -221,6 +221,8 @@ const styles = StyleSheet.create({
     },
     safeArea: {
         flex: 1,
+        paddingTop: SPACING.xl,
+        paddingBottom: SPACING.lg,
     },
     content: {
         flex: 1,

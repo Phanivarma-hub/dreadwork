@@ -17,6 +17,7 @@ import { updateChallengeProgress } from '../../services/userService';
 import { CHALLENGE_TYPES } from '../../constants/challenges';
 import GameButton from '../../components/GameButton';
 import RankUpdateCard from '../../components/RankUpdateCard';
+import soundService from '../../services/soundService';
 import { useState, useEffect } from 'react';
 
 const BattleRoyaleResultScreen = () => {
@@ -57,6 +58,21 @@ const BattleRoyaleResultScreen = () => {
                 });
 
                 setRrData({ oldRR, newRR, rrChange });
+
+                // Play ranking sound
+                soundService.playSound('ranking');
+
+                // Check for rank up
+                if (rank !== data.rank || rankDivision !== data.rankDivision) {
+                    soundService.playSound('rankup');
+                }
+
+                // Play win/lose sound
+                if (amIWinner) {
+                    soundService.playSound('win');
+                } else {
+                    soundService.playSound('gameover');
+                }
 
                 // Update Challenge Progress
                 if (amIWinner) {
@@ -159,7 +175,13 @@ const styles = StyleSheet.create({
     safeArea: { flex: 1 },
     scrollView: { flex: 1 },
     scrollContent: { flexGrow: 1 },
-    content: { flex: 1, padding: SPACING.xl, alignItems: 'center' },
+    content: {
+        flex: 1,
+        paddingHorizontal: SPACING.xl,
+        paddingTop: SPACING.xxl,
+        paddingBottom: SPACING.xxl,
+        alignItems: 'center',
+    },
     header: { alignItems: 'center', marginBottom: 30 },
     headerEmoji: { fontSize: 64, marginBottom: 10 },
     headerTitle: { color: COLORS.textPrimary, fontSize: 32, fontWeight: '900', letterSpacing: 2 },

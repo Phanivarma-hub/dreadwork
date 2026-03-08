@@ -402,8 +402,12 @@ const styles = StyleSheet.create({
     container: { flex: 1 },
     safeArea: { flex: 1 },
     header: {
-        paddingHorizontal: SPACING.md, paddingTop: 10,
-        flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+        paddingHorizontal: SPACING.md,
+        paddingTop: SPACING.xl,
+        paddingBottom: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     roundText: { color: COLORS.textPrimary, fontSize: 18, fontWeight: '900' },
     suddenDeath: { backgroundColor: '#EF4444', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 4 },
@@ -430,7 +434,11 @@ const styles = StyleSheet.create({
 
     divider: { height: 1, backgroundColor: 'rgba(255,255,255,0.1)', marginHorizontal: 15 },
 
-    actionArea: { padding: 15, flexGrow: 1 },
+    actionArea: {
+        padding: 15,
+        flexGrow: 1,
+        paddingBottom: SPACING.xxl,
+    },
     centerBox: { flex: 1, alignItems: 'center', justifyContent: 'center' },
     waitingTitle: { color: COLORS.textPrimary, fontSize: 24, fontWeight: '900', letterSpacing: 4 },
     waitingSub: { color: COLORS.textSecondary, fontSize: 14, marginTop: 10 },

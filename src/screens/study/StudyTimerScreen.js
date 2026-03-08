@@ -151,6 +151,8 @@ const styles = StyleSheet.create({
     },
     safeArea: {
         flex: 1,
+        paddingTop: SPACING.xl,
+        paddingBottom: SPACING.lg,
     },
     header: {
         alignItems: 'center',

@@ -130,6 +130,8 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         justifyContent: 'center',
         padding: SPACING.lg,
+        paddingTop: SPACING.xl,
+        paddingBottom: SPACING.xl,
     },
     logoSection: {
         alignItems: 'center',

@@ -15,6 +15,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS, RANK_COLORS } from '../../constants/theme';
 import { getSocket } from '../../services/socketService';
+import soundService from '../../services/soundService';
 
 const ROUND_CONFIG = [
     { type: 'mcq', label: 'Multiple Choice', timer: 30, icon: '📝' },
@@ -92,6 +93,7 @@ const DuelBattleScreen = () => {
                 aiFeedback: aiFeedback || null,
             });
             setPhase('round_result');
+            soundService.playSound(yourResult ? 'correct' : 'wrong');
         };
 
         const onMatchEnd = (data) => {
@@ -519,8 +521,19 @@ const DuelBattleScreen = () => {
 
 const styles = StyleSheet.create({
     container: { flex: 1 },
-    centerFull: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 30 },
-    battleSafe: { flex: 1 },
+    centerFull: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 30,
+        paddingTop: SPACING.xxl,
+        paddingBottom: SPACING.xl,
+    },
+    battleSafe: {
+        flex: 1,
+        paddingTop: SPACING.lg,
+        paddingBottom: SPACING.md,
+    },
 
     // VS Intro
     vsIcon: { fontSize: 64, marginBottom: 30 },
