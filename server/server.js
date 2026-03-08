@@ -194,7 +194,24 @@ function createBRMatch(players, topic) {
 
 function createMatch(players, topic) {
     const roomId = "room_" + Date.now() + "_" + Math.random().toString(36).substring(7);
-    const qArray = selectQuestionsForMatch(topic, 3);
+    // Define round types for Duel
+    const roundTypes = ["mcq", "explanation", "code_output"];
+    const qArray = [];
+    const lang = topic.toLowerCase();
+
+    // Select questions specific to each round's expected type
+    // Round 1: MCQ
+    const mcqPool = mcqQuestions.filter(q => q.language.toLowerCase() === lang);
+    qArray.push(mcqPool.length > 0 ? mcqPool[Math.floor(Math.random() * mcqPool.length)] : mcqQuestions[0]);
+
+    // Round 2: Explanation
+    const expPool = explanationQuestions.filter(q => q.language.toLowerCase() === lang);
+    qArray.push(expPool.length > 0 ? expPool[Math.floor(Math.random() * expPool.length)] : explanationQuestions[0]);
+
+    // Round 3: Code Output
+    const codePool = codeQuestions.filter(q => q.language.toLowerCase() === lang);
+    qArray.push(codePool.length > 0 ? codePool[Math.floor(Math.random() * codePool.length)] : codeQuestions[0]);
+
     const questions = {
         round1: qArray[0],
         round2: qArray[1],
@@ -284,10 +301,11 @@ function startRound(roomId) {
 
     io.to(roomId).emit("question", {
         round: roundIndex + 1,
-        type: roundTypes[roundIndex],
-        question: question.question,
+        type: question.type || roundTypes[roundIndex], // Use actual type from question
+        question: question.question || "No question text",
+        code: question.code || null,
         options: question.options || null,
-        timer: roundTypes[roundIndex] === "mcq" ? 20 : 60,
+        timer: (question.type || roundTypes[roundIndex]) === "mcq" ? 20 : 60,
     });
 
     const timeout = (roundTypes[roundIndex] === "mcq" ? 22 : 62) * 1000;

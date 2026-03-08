@@ -21,6 +21,7 @@ import DuelResultScreen from '../screens/duel/DuelResultScreen';
 import BattleRoyaleLobbyScreen from '../screens/br/BattleRoyaleLobbyScreen';
 import BattleRoyaleBattleScreen from '../screens/br/BattleRoyaleBattleScreen';
 import BattleRoyaleResultScreen from '../screens/br/BattleRoyaleResultScreen';
+import LeaderboardScreen from '../screens/LeaderboardScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -83,6 +84,7 @@ const AppNavigator = () => {
                         <Stack.Screen name="BattleRoyaleLobby" component={BattleRoyaleLobbyScreen} />
                         <Stack.Screen name="BattleRoyaleBattle" component={BattleRoyaleBattleScreen} />
                         <Stack.Screen name="BattleRoyaleResult" component={BattleRoyaleResultScreen} />
+                        <Stack.Screen name="Leaderboard" component={LeaderboardScreen} />
                     </>
                 ) : (
                     // Auth screens

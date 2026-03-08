@@ -79,6 +79,17 @@ export const getRankFromRR = (totalRR) => {
     return { rank: 'Bronze', rankDivision: 'III', color: RANKS[0].color };
 };
 
+// RR bounds for better progress mapping
+export const getRankBounds = (totalRR) => {
+    const { rank } = getRankFromRR(totalRR);
+    const config = RANKS.find(r => r.name === rank);
+    return {
+        min: config.minRR,
+        max: config.maxRR,
+        color: config.color
+    };
+};
+
 // Calculate new RR and rank after a duel match
 // Win: +25 RR, Loss: -15 RR (from SRS Section 10)
 export const updateRankAfterMatch = (currentRR, isWin) => {
@@ -86,4 +97,13 @@ export const updateRankAfterMatch = (currentRR, isWin) => {
     const newRR = Math.max(0, currentRR + rrChange);
     const { rank, rankDivision } = getRankFromRR(newRR);
     return { rankPoints: newRR, rank, rankDivision, rrChange };
+};
+
+// Calculate RR change for Battle Royale
+export const calculateBRRRChange = (placement, totalPlayers) => {
+    if (placement === 1) return 50;
+    if (placement === 2) return 30;
+    if (placement === 3) return 15;
+    if (placement <= totalPlayers / 2) return 5;
+    return -15;
 };

@@ -1,12 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Animated, Easing } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, Animated, Easing, ScrollView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS, RANK_COLORS } from '../../constants/theme';
 import { auth, db } from '../../config/firebase';
 import { doc, getDoc, updateDoc, increment, collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { getXPForLevel, updateRankAfterMatch } from '../../constants/ranks';
+import { getXPForLevel, updateRankAfterMatch, calculateBRRRChange, getRankFromRR } from '../../constants/ranks';
+import { updateChallengeProgress } from '../../services/userService';
+import { CHALLENGE_TYPES } from '../../constants/challenges';
 import GameButton from '../../components/GameButton';
+import RankUpdateCard from '../../components/RankUpdateCard';
 
 const DuelResultScreen = () => {
     const navigation = useNavigation();
@@ -22,6 +25,7 @@ const DuelResultScreen = () => {
     const [levelUp, setLevelUp] = useState(false);
     const [rankChange, setRankChange] = useState(null);
     const [saving, setSaving] = useState(true);
+    const [rrData, setRrData] = useState({ oldRR: 0, newRR: 0 });
 
     const scaleAnim = useRef(new Animated.Value(0)).current;
     const rotateAnim = useRef(new Animated.Value(0)).current;
@@ -96,9 +100,8 @@ const DuelResultScreen = () => {
                     xp: currentXP,
                     level: currentLevel,
                     matchesPlayed: increment(1),
+                    wins: playerWon ? increment(1) : (data.wins || 0), // Use playerWon for wins increment
                 };
-
-                if (playerWon) updateData.wins = increment(1);
 
                 // Rank update for ranked matches
                 if (isRanked) {
@@ -109,6 +112,7 @@ const DuelResultScreen = () => {
                     updateData.rankDivision = result.rankDivision;
 
                     setRankChange(result);
+                    setRrData({ oldRR: currentRR, newRR: result.rankPoints });
                     setRewards(prev => ({ ...prev, rr: result.rrChange }));
 
                     // Animate RR counting
@@ -125,6 +129,12 @@ const DuelResultScreen = () => {
                 }
 
                 await updateDoc(userRef, updateData);
+
+                // Update Challenge Progress
+                if (playerWon) {
+                    await updateChallengeProgress(CHALLENGE_TYPES.WIN_DUELS);
+                }
+                await updateChallengeProgress(CHALLENGE_TYPES.PLAY_DUELS);
 
                 // Save match to matches collection
                 await addDoc(collection(db, 'matches'), {
@@ -170,97 +180,102 @@ const DuelResultScreen = () => {
     return (
         <LinearGradient colors={[COLORS.bgPrimary, COLORS.bgSecondary]} style={styles.container}>
             <SafeAreaView style={styles.safeArea}>
-                <View style={styles.content}>
-                    {/* Result Circle */}
-                    <Animated.View style={[styles.resultCircle, { transform: [{ scale: scaleAnim }], borderColor: resultColor }]}>
-                        <Animated.View style={[styles.glowRing, { transform: [{ rotate: spin }] }]}>
-                            <LinearGradient
-                                colors={['transparent', resultColor, 'transparent']}
-                                style={styles.glow}
-                            />
+                <ScrollView
+                    style={styles.scrollView}
+                    contentContainerStyle={styles.scrollContent}
+                    showsVerticalScrollIndicator={false}
+                >
+                    <View style={styles.content}>
+                        {/* Result Circle */}
+                        <Animated.View style={[styles.resultCircle, { transform: [{ scale: scaleAnim }], borderColor: resultColor }]}>
+                            <Animated.View style={[styles.glowRing, { transform: [{ rotate: spin }] }]}>
+                                <LinearGradient
+                                    colors={['transparent', resultColor, 'transparent']}
+                                    style={styles.glow}
+                                />
+                            </Animated.View>
+                            <Text style={styles.resultIcon}>{resultIcon}</Text>
                         </Animated.View>
-                        <Text style={styles.resultIcon}>{resultIcon}</Text>
-                    </Animated.View>
 
-                    {/* Title */}
-                    <Animated.Text style={[styles.resultTitle, { color: resultColor, opacity: scaleAnim }]}>
-                        {resultTitle}
-                    </Animated.Text>
+                        {/* Title */}
+                        <Animated.Text style={[styles.resultTitle, { color: resultColor, opacity: scaleAnim }]}>
+                            {resultTitle}
+                        </Animated.Text>
 
-                    {/* Score */}
-                    <Animated.View style={[styles.scoreRow, { opacity: scaleAnim }]}>
-                        <View style={styles.scoreBox}>
-                            <Text style={styles.scoreBoxLabel}>You</Text>
-                            <Text style={styles.scoreBoxValue}>{playerScore}</Text>
-                        </View>
-                        <Text style={styles.scoreSeparator}>-</Text>
-                        <View style={styles.scoreBox}>
-                            <Text style={styles.scoreBoxLabel}>{opponentName}</Text>
-                            <Text style={styles.scoreBoxValue}>{botScore}</Text>
-                        </View>
-                    </Animated.View>
-
-                    {/* Rewards */}
-                    <Animated.View style={[styles.rewardsRow, { opacity: rewardFade, transform: [{ translateY: rewardSlide }] }]}>
-                        <View style={styles.rewardCard}>
-                            <Text style={styles.rewardValue}>+{displayXP}</Text>
-                            <Text style={styles.rewardEmoji}>✨</Text>
-                            <Text style={styles.rewardLabel}>XP Gained</Text>
-                        </View>
-                        {isRanked && (
-                            <View style={styles.rewardCard}>
-                                <Text style={[
-                                    styles.rewardValue,
-                                    { color: rewards.rr >= 0 ? COLORS.successGreen : COLORS.dangerRed }
-                                ]}>
-                                    {displayRR > 0 ? '+' : ''}{displayRR}
-                                </Text>
-                                <Text style={styles.rewardEmoji}>⚔️</Text>
-                                <Text style={styles.rewardLabel}>Rank Rating</Text>
+                        {/* Score */}
+                        <Animated.View style={[styles.scoreRow, { opacity: scaleAnim }]}>
+                            <View style={styles.scoreBox}>
+                                <Text style={styles.scoreBoxLabel}>You</Text>
+                                <Text style={styles.scoreBoxValue}>{playerScore}</Text>
                             </View>
-                        )}
-                    </Animated.View>
+                            <Text style={styles.scoreSeparator}>-</Text>
+                            <View style={styles.scoreBox}>
+                                <Text style={styles.scoreBoxLabel}>{opponentName}</Text>
+                                <Text style={styles.scoreBoxValue}>{botScore}</Text>
+                            </View>
+                        </Animated.View>
 
-                    {/* Rank Change Badge */}
-                    {isRanked && rankChange && (
-                        <Animated.View style={[styles.rankBadge, { opacity: rewardFade }]}>
-                            <Text style={[styles.rankBadgeText, { color: RANK_COLORS[rankChange.rank] || COLORS.textPrimary }]}>
-                                {rankChange.rank} {rankChange.rankDivision} • {rankChange.rankPoints} RR
+                        {/* Rewards */}
+                        <Animated.View style={[styles.rewardsRow, { opacity: rewardFade, transform: [{ translateY: rewardSlide }] }]}>
+                            <View style={styles.rewardCard}>
+                                <Text style={styles.rewardValue}>+{displayXP}</Text>
+                                <Text style={styles.rewardEmoji}>✨</Text>
+                                <Text style={styles.rewardLabel}>XP Gained</Text>
+                            </View>
+                            {isRanked && (
+                                <View style={styles.rewardCard}>
+                                    <Text style={[
+                                        styles.rewardValue,
+                                        { color: rewards.rr >= 0 ? COLORS.successGreen : COLORS.dangerRed }
+                                    ]}>
+                                        {displayRR > 0 ? '+' : ''}{displayRR}
+                                    </Text>
+                                    <Text style={styles.rewardEmoji}>⚔️</Text>
+                                    <Text style={styles.rewardLabel}>Rank Rating</Text>
+                                </View>
+                            )}
+                        </Animated.View>
+
+                        {/* Rank Update Card */}
+                        {isRanked && rankChange && (
+                            <RankUpdateCard
+                                oldRR={rrData.oldRR}
+                                newRR={rrData.newRR}
+                            />
+                        )}
+
+                        {/* Level Up */}
+                        {levelUp && (
+                            <Animated.View style={[styles.levelUpBadge, { transform: [{ scale: levelUpScale }] }]}>
+                                <Text style={styles.levelUpText}>⬆ LEVEL UP!</Text>
+                            </Animated.View>
+                        )}
+
+                        {/* Match Info */}
+                        <Animated.View style={[styles.matchInfo, { opacity: rewardFade }]}>
+                            <Text style={styles.matchInfoText}>
+                                {language.toUpperCase()} • {isRanked ? 'RANKED' : 'FRIENDLY'}
                             </Text>
                         </Animated.View>
-                    )}
 
-                    {/* Level Up */}
-                    {levelUp && (
-                        <Animated.View style={[styles.levelUpBadge, { transform: [{ scale: levelUpScale }] }]}>
-                            <Text style={styles.levelUpText}>⬆ LEVEL UP!</Text>
-                        </Animated.View>
-                    )}
-
-                    {/* Match Info */}
-                    <Animated.View style={[styles.matchInfo, { opacity: rewardFade }]}>
-                        <Text style={styles.matchInfoText}>
-                            {language.toUpperCase()} • {isRanked ? 'RANKED' : 'FRIENDLY'}
-                        </Text>
-                    </Animated.View>
-
-                    {/* Continue Button */}
-                    <View style={styles.footer}>
-                        <GameButton
-                            title="CONTINUE"
-                            onPress={() => navigation.navigate('Dashboard')}
-                            loading={saving}
-                            style={styles.continueBtn}
-                        />
-                        <GameButton
-                            title="PLAY AGAIN"
-                            variant="secondary"
-                            onPress={() => navigation.replace('DuelLobby')}
-                            disabled={saving}
-                            style={styles.playAgainBtn}
-                        />
+                        {/* Continue Button */}
+                        <View style={styles.footer}>
+                            <GameButton
+                                title="CONTINUE"
+                                onPress={() => navigation.navigate('Dashboard')}
+                                loading={saving}
+                                style={styles.continueBtn}
+                            />
+                            <GameButton
+                                title="PLAY AGAIN"
+                                variant="secondary"
+                                onPress={() => navigation.replace('DuelLobby')}
+                                disabled={saving}
+                                style={styles.playAgainBtn}
+                            />
+                        </View>
                     </View>
-                </View>
+                </ScrollView>
             </SafeAreaView>
         </LinearGradient>
     );
@@ -269,7 +284,9 @@ const DuelResultScreen = () => {
 const styles = StyleSheet.create({
     container: { flex: 1 },
     safeArea: { flex: 1 },
-    content: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 30 },
+    scrollView: { flex: 1 },
+    scrollContent: { flexGrow: 1 },
+    content: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 30, paddingVertical: SPACING.xl },
 
     // Result Circle
     resultCircle: {

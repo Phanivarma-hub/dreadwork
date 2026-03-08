@@ -10,7 +10,14 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../../constants/theme';
+import { auth, db } from '../../config/firebase';
+import { doc, getDoc, updateDoc, increment } from 'firebase/firestore';
+import { calculateBRRRChange, getRankFromRR } from '../../constants/ranks';
+import { updateChallengeProgress } from '../../services/userService';
+import { CHALLENGE_TYPES } from '../../constants/challenges';
 import GameButton from '../../components/GameButton';
+import RankUpdateCard from '../../components/RankUpdateCard';
+import { useState, useEffect } from 'react';
 
 const BattleRoyaleResultScreen = () => {
     const navigation = useNavigation();
@@ -21,68 +28,127 @@ const BattleRoyaleResultScreen = () => {
     const myRank = rankings.findIndex(p => p.userId === userData?.uid) + 1;
     const amIWinner = myRank === 1;
 
+    const [rrData, setRrData] = useState({ oldRR: 0, newRR: 0, rrChange: 0 });
+    const [saving, setSaving] = useState(true);
+
+    useEffect(() => {
+        applyRankUpdate();
+    }, []);
+
+    const applyRankUpdate = async () => {
+        try {
+            const userRef = doc(db, 'users', auth.currentUser.uid);
+            const userSnap = await getDoc(userRef);
+
+            if (userSnap.exists()) {
+                const data = userSnap.data();
+                const oldRR = data.rankPoints || 0;
+                const rrChange = calculateBRRRChange(myRank, rankings.length);
+                const newRR = Math.max(0, oldRR + rrChange);
+
+                const { rank, rankDivision } = getRankFromRR(newRR);
+
+                await updateDoc(userRef, {
+                    rankPoints: newRR,
+                    rank: rank,
+                    rankDivision: rankDivision,
+                    matchesPlayed: increment(1),
+                    wins: amIWinner ? increment(1) : data.wins || 0
+                });
+
+                setRrData({ oldRR, newRR, rrChange });
+
+                // Update Challenge Progress
+                if (amIWinner) {
+                    await updateChallengeProgress(CHALLENGE_TYPES.WIN_BR);
+                }
+                await updateChallengeProgress(CHALLENGE_TYPES.PLAY_BR);
+            }
+        } catch (error) {
+            console.error('Error updating BR rank:', error);
+        } finally {
+            setSaving(false);
+        }
+    };
+
     return (
         <LinearGradient colors={[COLORS.bgPrimary, '#0F172A']} style={styles.container}>
             <SafeAreaView style={styles.safeArea}>
-                <View style={styles.content}>
-                    {/* Header */}
-                    <View style={styles.header}>
-                        <Text style={styles.headerEmoji}>{amIWinner ? '🏆' : '💀'}</Text>
-                        <Text style={styles.headerTitle}>{amIWinner ? 'VICTORY SURVIVOR' : 'ELIMINATED'}</Text>
-                        <View style={styles.placementBadge}>
-                            <Text style={styles.placementText}>#{myRank} / {rankings.length}</Text>
+                <ScrollView
+                    style={styles.scrollView}
+                    contentContainerStyle={styles.scrollContent}
+                    showsVerticalScrollIndicator={false}
+                >
+                    <View style={styles.content}>
+                        {/* Header */}
+                        <View style={styles.header}>
+                            <Text style={styles.headerEmoji}>{amIWinner ? '🏆' : '💀'}</Text>
+                            <Text style={styles.headerTitle}>{amIWinner ? 'VICTORY SURVIVOR' : 'ELIMINATED'}</Text>
+                            <View style={styles.placementBadge}>
+                                <Text style={styles.placementText}>#{myRank} / {rankings.length}</Text>
+                            </View>
                         </View>
-                    </View>
 
-                    {/* Rankings Table */}
-                    <Text style={styles.sectionLabel}>FINAL STANDINGS</Text>
-                    <ScrollView style={styles.rankingsScroll} showsVerticalScrollIndicator={false}>
-                        {rankings.map((p, index) => {
-                            const isMe = p.userId === userData?.uid;
-                            return (
-                                <View
-                                    key={index}
-                                    style={[
-                                        styles.rankingRow,
-                                        index === 0 && styles.winnerRow,
-                                        isMe && styles.myRow
-                                    ]}
-                                >
-                                    <Text style={styles.rankNum}>{index + 1}</Text>
-                                    <View style={styles.playerInfo}>
-                                        <Text style={styles.playerName}>{p.username}</Text>
-                                        <Text style={styles.playerDetail}>{p.rank}</Text>
+                        {/* Rankings Table */}
+                        <Text style={styles.sectionLabel}>FINAL STANDINGS</Text>
+                        <View style={styles.rankingsContainer}>
+                            {rankings.map((p, index) => {
+                                const isMe = p.userId === userData?.uid;
+                                return (
+                                    <View
+                                        key={index}
+                                        style={[
+                                            styles.rankingRow,
+                                            index === 0 && styles.winnerRow,
+                                            isMe && styles.myRow
+                                        ]}
+                                    >
+                                        <Text style={styles.rankNum}>{index + 1}</Text>
+                                        <View style={styles.playerInfo}>
+                                            <Text style={styles.playerName}>{p.username}</Text>
+                                            <Text style={styles.playerDetail}>{p.rank}</Text>
+                                        </View>
+                                        {index === 0 && <Text style={styles.winnerTag}>WINNER</Text>}
+                                        {isMe && <Text style={styles.meTag}>YOU</Text>}
                                     </View>
-                                    {index === 0 && <Text style={styles.winnerTag}>WINNER</Text>}
-                                    {isMe && <Text style={styles.meTag}>YOU</Text>}
-                                </View>
-                            );
-                        })}
-                    </ScrollView>
-
-                    {/* Rewards/RR - Mocked for now */}
-                    <View style={styles.rewardCard}>
-                        <View style={styles.rewardRow}>
-                            <Text style={styles.rewardLabel}>Rating Change</Text>
-                            <Text style={[styles.rewardValue, { color: amIWinner ? COLORS.successGreen : COLORS.dangerRed }]}>
-                                {amIWinner ? '+50 RR' : '-10 RR'}
-                            </Text>
+                                );
+                            })}
                         </View>
-                        <View style={styles.rewardRow}>
-                            <Text style={styles.rewardLabel}>Coins Earned</Text>
-                            <Text style={[styles.rewardValue, { color: '#FFD700' }]}>
-                                {amIWinner ? '250' : '50'} 🪙
-                            </Text>
+
+                        {/* Rank Update Card */}
+                        {!saving && (
+                            <View style={{ width: '100%', marginBottom: 20 }}>
+                                <RankUpdateCard oldRR={rrData.oldRR} newRR={rrData.newRR} />
+                            </View>
+                        )}
+
+                        {/* Rewards/RR */}
+                        <View style={styles.rewardCard}>
+                            <View style={styles.rewardRow}>
+                                <Text style={styles.rewardLabel}>Rating Change</Text>
+                                <Text style={[styles.rewardValue, { color: rrData.rrChange >= 0 ? COLORS.successGreen : COLORS.dangerRed }]}>
+                                    {rrData.rrChange >= 0 ? '+' : ''}{rrData.rrChange} RR
+                                </Text>
+                            </View>
+                            <View style={styles.rewardRow}>
+                                <Text style={styles.rewardLabel}>Coins Earned</Text>
+                                <Text style={[styles.rewardValue, { color: '#FFD700' }]}>
+                                    {amIWinner ? '250' : '50'} 🪙
+                                </Text>
+                            </View>
+                        </View>
+
+                        {/* Actions */}
+                        <View style={styles.footer}>
+                            <GameButton
+                                title="RETURN TO DASHBOARD"
+                                onPress={() => navigation.navigate('Dashboard')}
+                                loading={saving}
+                                style={styles.actionBtn}
+                            />
                         </View>
                     </View>
-
-                    {/* Actions */}
-                    <GameButton
-                        title="RETURN TO DASHBOARD"
-                        onPress={() => navigation.navigate('Dashboard')}
-                        style={styles.actionBtn}
-                    />
-                </View>
+                </ScrollView>
             </SafeAreaView>
         </LinearGradient>
     );
@@ -91,6 +157,8 @@ const BattleRoyaleResultScreen = () => {
 const styles = StyleSheet.create({
     container: { flex: 1 },
     safeArea: { flex: 1 },
+    scrollView: { flex: 1 },
+    scrollContent: { flexGrow: 1 },
     content: { flex: 1, padding: SPACING.xl, alignItems: 'center' },
     header: { alignItems: 'center', marginBottom: 30 },
     headerEmoji: { fontSize: 64, marginBottom: 10 },
@@ -98,7 +166,7 @@ const styles = StyleSheet.create({
     placementBadge: { backgroundColor: 'rgba(255,255,255,0.1)', paddingHorizontal: 20, paddingVertical: 10, borderRadius: BORDER_RADIUS.md, marginTop: 15 },
     placementText: { color: COLORS.textSecondary, fontSize: 18, fontWeight: '800' },
     sectionLabel: { color: COLORS.textSecondary, fontSize: 12, fontWeight: '800', letterSpacing: 2, alignSelf: 'flex-start', marginBottom: 10 },
-    rankingsScroll: { width: '100%', maxHeight: 300 },
+    rankingsContainer: { width: '100%', marginBottom: 20 },
     rankingRow: {
         flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.03)',
         padding: 15, borderRadius: 12, marginBottom: 10, borderWidth: 1, borderColor: 'rgba(255,255,255,0.05)'
@@ -113,12 +181,13 @@ const styles = StyleSheet.create({
     meTag: { backgroundColor: COLORS.primaryBlue, paddingHorizontal: 8, paddingVertical: 4, borderRadius: 4, color: '#fff', fontSize: 10, fontWeight: '900', marginLeft: 5 },
     rewardCard: {
         width: '100%', backgroundColor: COLORS.bgSecondary, padding: 20, borderRadius: 16,
-        marginTop: 20, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)'
+        marginBottom: 20, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)'
     },
     rewardRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 },
     rewardLabel: { color: COLORS.textSecondary, fontSize: 14, fontWeight: '600' },
     rewardValue: { fontSize: 16, fontWeight: '800' },
-    actionBtn: { width: '100%', marginTop: 'auto' },
+    footer: { width: '100%', marginTop: 'auto', paddingTop: 20 },
+    actionBtn: { width: '100%' },
 });
 
 export default BattleRoyaleResultScreen;

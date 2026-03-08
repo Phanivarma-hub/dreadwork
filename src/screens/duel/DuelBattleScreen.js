@@ -420,23 +420,27 @@ const DuelBattleScreen = () => {
                                     <Text style={styles.questionText}>{currentQuestion.question}</Text>
                                 </View>
                                 <View style={styles.optionsContainer}>
-                                    {currentQuestion.options.map((option, index) => {
-                                        if (hiddenOptions.includes(option)) return null;
-                                        let optStyle = [styles.optionBtn];
-                                        let txtStyle = [styles.optionText];
-                                        if (isAnswered && option === selectedOption) {
-                                            optStyle.push({ borderColor: COLORS.primaryBlue, borderWidth: 2 });
-                                        }
-                                        return (
-                                            <TouchableOpacity
-                                                key={index} style={optStyle}
-                                                onPress={() => handleMCQAnswer(option)}
-                                                disabled={isAnswered}
-                                            >
-                                                <Text style={txtStyle}>{option}</Text>
-                                            </TouchableOpacity>
-                                        );
-                                    })}
+                                    {currentQuestion?.options && Array.isArray(currentQuestion.options) ? (
+                                        currentQuestion.options.map((option, index) => {
+                                            if (hiddenOptions.includes(option)) return null;
+                                            let optStyle = [styles.optionBtn];
+                                            let txtStyle = [styles.optionText];
+                                            if (isAnswered && option === selectedOption) {
+                                                optStyle.push({ borderColor: COLORS.primaryBlue, borderWidth: 2 });
+                                            }
+                                            return (
+                                                <TouchableOpacity
+                                                    key={index} style={optStyle}
+                                                    onPress={() => handleMCQAnswer(option)}
+                                                    disabled={isAnswered}
+                                                >
+                                                    <Text style={txtStyle}>{option}</Text>
+                                                </TouchableOpacity>
+                                            );
+                                        })
+                                    ) : (
+                                        <Text style={{ color: COLORS.textSecondary, textAlign: 'center' }}>No options available</Text>
+                                    )}
                                 </View>
                             </>
                         )}
@@ -480,22 +484,26 @@ const DuelBattleScreen = () => {
                                     </View>
                                 </View>
                                 <View style={styles.optionsContainer}>
-                                    {currentQuestion.options.map((option, index) => {
-                                        let optStyle = [styles.optionBtn];
-                                        let txtStyle = [styles.optionText];
-                                        if (isAnswered && option === selectedOption) {
-                                            optStyle.push({ borderColor: COLORS.primaryBlue, borderWidth: 2 });
-                                        }
-                                        return (
-                                            <TouchableOpacity
-                                                key={index} style={optStyle}
-                                                onPress={() => handleCodeAnswer(option)}
-                                                disabled={isAnswered}
-                                            >
-                                                <Text style={txtStyle}>{option}</Text>
-                                            </TouchableOpacity>
-                                        );
-                                    })}
+                                    {currentQuestion?.options && Array.isArray(currentQuestion.options) ? (
+                                        currentQuestion.options.map((option, index) => {
+                                            let optStyle = [styles.optionBtn];
+                                            let txtStyle = [styles.optionText];
+                                            if (isAnswered && option === selectedOption) {
+                                                optStyle.push({ borderColor: COLORS.primaryBlue, borderWidth: 2 });
+                                            }
+                                            return (
+                                                <TouchableOpacity
+                                                    key={index} style={optStyle}
+                                                    onPress={() => handleCodeAnswer(option)}
+                                                    disabled={isAnswered}
+                                                >
+                                                    <Text style={txtStyle}>{option}</Text>
+                                                </TouchableOpacity>
+                                            );
+                                        })
+                                    ) : (
+                                        <Text style={{ color: COLORS.textSecondary, textAlign: 'center' }}>No options available</Text>
+                                    )}
                                 </View>
                             </>
                         )}

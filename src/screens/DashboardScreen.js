@@ -7,6 +7,7 @@ import {
     ScrollView,
     TouchableOpacity,
     RefreshControl,
+    Alert,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { signOut } from 'firebase/auth';
@@ -17,6 +18,7 @@ import RankBadge from '../components/RankBadge';
 import GameButton from '../components/GameButton';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS, RANK_COLORS } from '../constants/theme';
 import { getXPForLevel } from '../constants/ranks';
+import { checkAndUpdateStreak, getOrGenerateDailyChallenge, claimChallengeReward } from '../services/userService';
 
 const DashboardScreen = () => {
     const navigation = useNavigation();
@@ -31,8 +33,19 @@ const DashboardScreen = () => {
         // Real-time listener
         const unsubscribe = onSnapshot(userRef, (docSnap) => {
             if (docSnap.exists()) {
-                console.log('Dashboard received update:', docSnap.data().xp);
-                setUserData(docSnap.data());
+                const data = docSnap.data();
+                console.log('Dashboard received update:', data.xp);
+                setUserData(data);
+
+                // Track daily streak and challenges
+                const today = new Date().toDateString();
+                const lastLoginDate = data.lastLogin?.toDate().toDateString();
+
+                if (!data.lastLogin || today !== lastLoginDate || !data.dailyChallenge) {
+                    console.log('Initiating streak/challenge check...');
+                    checkAndUpdateStreak(data);
+                    getOrGenerateDailyChallenge(data);
+                }
             }
         }, (error) => {
             console.error('Firestore listener error:', error);
@@ -132,29 +145,48 @@ const DashboardScreen = () => {
                 </View>
 
                 {/* ── Daily Challenge Card ── */}
-                <TouchableOpacity activeOpacity={0.8}>
-                    <LinearGradient
-                        colors={['#1E293B', '#2D3A4F']}
-                        style={styles.card}
+                {userData?.dailyChallenge && (
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        disabled={!userData.dailyChallenge.completed || userData.dailyChallenge.claimed}
+                        onPress={async () => {
+                            const rewards = await claimChallengeReward();
+                            if (rewards) {
+                                alert(`Claimed ${rewards.coins} 🪙 and ${rewards.xp} ✨!`);
+                            }
+                        }}
                     >
-                        <View style={styles.dailyHeader}>
-                            <Text style={styles.dailyIcon}>🎯</Text>
-                            <View>
-                                <Text style={styles.cardTitle}>Daily Challenge</Text>
-                                <Text style={styles.cardSubtitle}>Win 2 duels today</Text>
+                        <LinearGradient
+                            colors={userData.dailyChallenge.completed && !userData.dailyChallenge.claimed ? ['#059669', '#10B981'] : ['#1E293B', '#2D3A4F']}
+                            style={[styles.card, userData.dailyChallenge.completed && !userData.dailyChallenge.claimed && styles.completedCard]}
+                        >
+                            <View style={styles.dailyHeader}>
+                                <Text style={styles.dailyIcon}>{userData.dailyChallenge.claimed ? '✅' : '🎯'}</Text>
+                                <View>
+                                    <Text style={styles.cardTitle}>Daily Challenge</Text>
+                                    <Text style={styles.cardSubtitle}>{userData.dailyChallenge.description}</Text>
+                                </View>
+                                <View style={[styles.rewardBadge, userData.dailyChallenge.claimed && { backgroundColor: 'rgba(255,255,255,0.1)' }]}>
+                                    <Text style={[styles.rewardText, userData.dailyChallenge.claimed && { color: COLORS.textSecondary }]}>
+                                        {userData.dailyChallenge.claimed ? 'CLAIMED' : `+${userData.dailyChallenge.rewardCoins} 🪙`}
+                                    </Text>
+                                </View>
                             </View>
-                            <View style={styles.rewardBadge}>
-                                <Text style={styles.rewardText}>+100 🪙</Text>
+                            <View style={styles.dailyProgress}>
+                                <View style={styles.dailyBarBg}>
+                                    <View style={[
+                                        styles.dailyBarFill,
+                                        { width: `${Math.min(100, (userData.dailyChallenge.progress / userData.dailyChallenge.target) * 100)}%` },
+                                        userData.dailyChallenge.completed && { backgroundColor: '#fff' }
+                                    ]} />
+                                </View>
+                                <Text style={[styles.dailyProgressText, userData.dailyChallenge.completed && { color: '#fff' }]}>
+                                    {userData.dailyChallenge.progress} / {userData.dailyChallenge.target}
+                                </Text>
                             </View>
-                        </View>
-                        <View style={styles.dailyProgress}>
-                            <View style={styles.dailyBarBg}>
-                                <View style={[styles.dailyBarFill, { width: '0%' }]} />
-                            </View>
-                            <Text style={styles.dailyProgressText}>0 / 2</Text>
-                        </View>
-                    </LinearGradient>
-                </TouchableOpacity>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                )}
 
                 {/* ── Streak Card ── */}
                 <View style={styles.statsRow}>
@@ -174,6 +206,30 @@ const DashboardScreen = () => {
                         <Text style={styles.statLabel}>Wins</Text>
                     </View>
                 </View>
+
+                {/* ── Leaderboard Section ── */}
+                <Text style={styles.sectionTitle}>Leaderboards</Text>
+                <TouchableOpacity
+                    activeOpacity={0.85}
+                    style={styles.modeCard}
+                    onPress={() => navigation.navigate('Leaderboard')}
+                >
+                    <LinearGradient
+                        colors={['#1E293B', '#334155']}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 0 }}
+                        style={styles.modeGradient}
+                    >
+                        <View style={styles.modeContent}>
+                            <Text style={styles.modeIcon}>🏆</Text>
+                            <View style={styles.modeInfo}>
+                                <Text style={styles.modeTitle}>Global Leaderboard</Text>
+                                <Text style={styles.modeDesc}>View top warriors in RR, Level, and Coins</Text>
+                            </View>
+                            <Text style={styles.modeArrow}>›</Text>
+                        </View>
+                    </LinearGradient>
+                </TouchableOpacity>
 
                 {/* ── Quick Play Section ── */}
                 <Text style={styles.sectionTitle}>Quick Play</Text>
@@ -239,25 +295,35 @@ const DashboardScreen = () => {
                 {/* ── Events Section ── */}
                 <Text style={styles.sectionTitle}>Events</Text>
 
-                <View style={styles.card}>
-                    <View style={styles.eventRow}>
-                        <Text style={styles.eventIcon}>🐉</Text>
-                        <View style={styles.eventInfo}>
-                            <Text style={styles.eventTitle}>Raid Boss: The Compiler</Text>
-                            <Text style={styles.eventSubtitle}>Starts in 2 hours • 20,000 HP</Text>
+                <TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={() => Alert.alert('Coming Soon', 'The Raid Boss event will be available in a future update!')}
+                >
+                    <View style={styles.card}>
+                        <View style={styles.eventRow}>
+                            <Text style={styles.eventIcon}>🐉</Text>
+                            <View style={styles.eventInfo}>
+                                <Text style={styles.eventTitle}>Raid Boss: The Compiler</Text>
+                                <Text style={styles.eventSubtitle}>Starts in 2 hours • 20,000 HP</Text>
+                            </View>
                         </View>
                     </View>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.card}>
-                    <View style={styles.eventRow}>
-                        <Text style={styles.eventIcon}>🏅</Text>
-                        <View style={styles.eventInfo}>
-                            <Text style={styles.eventTitle}>Season 1</Text>
-                            <Text style={styles.eventSubtitle}>Climb the ranks and earn exclusive rewards</Text>
+                <TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={() => Alert.alert('Coming Soon', 'Season 1 Ranked rewards will be revealed soon!')}
+                >
+                    <View style={styles.card}>
+                        <View style={styles.eventRow}>
+                            <Text style={styles.eventIcon}>🏅</Text>
+                            <View style={styles.eventInfo}>
+                                <Text style={styles.eventTitle}>Season 1</Text>
+                                <Text style={styles.eventSubtitle}>Climb the ranks and earn exclusive rewards</Text>
+                            </View>
                         </View>
                     </View>
-                </View>
+                </TouchableOpacity>
 
                 {/* ── Logout ── */}
                 <GameButton
@@ -360,6 +426,10 @@ const styles = StyleSheet.create({
         marginBottom: SPACING.md,
         borderWidth: 1,
         borderColor: COLORS.bgTertiary + '40',
+    },
+    completedCard: {
+        borderColor: '#34D399',
+        borderWidth: 2,
     },
 
     // Rank Row

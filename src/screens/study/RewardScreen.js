@@ -6,6 +6,8 @@ import { theme, COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../../constan
 import { auth, db } from '../../config/firebase';
 import { doc, getDoc, updateDoc, increment } from 'firebase/firestore';
 import { getXPForLevel } from '../../constants/ranks';
+import { updateChallengeProgress } from '../../services/userService';
+import { CHALLENGE_TYPES } from '../../constants/challenges';
 import GameButton from '../../components/GameButton';
 
 const RewardScreen = () => {
@@ -111,6 +113,9 @@ const RewardScreen = () => {
                     [`study_stats.${language}`]: increment(finalXP),
                 });
                 console.log('Rewards applied to Firestore successfully');
+
+                // Update Challenge Progress
+                await updateChallengeProgress(CHALLENGE_TYPES.STUDY_SESSION);
 
                 if (levelGained) {
                     setLevelUp(true);
