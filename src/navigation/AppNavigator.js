@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -7,6 +7,7 @@ import { auth } from '../config/firebase';
 import { COLORS } from '../constants/theme';
 
 // Screens
+import LoadingScreen from '../screens/LoadingScreen';
 import LoginScreen from '../screens/auth/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import DashboardScreen from '../screens/DashboardScreen';
@@ -17,27 +18,43 @@ import RewardScreen from '../screens/study/RewardScreen';
 import DuelLobbyScreen from '../screens/duel/DuelLobbyScreen';
 import DuelBattleScreen from '../screens/duel/DuelBattleScreen';
 import DuelResultScreen from '../screens/duel/DuelResultScreen';
+import BattleRoyaleLobbyScreen from '../screens/br/BattleRoyaleLobbyScreen';
+import BattleRoyaleBattleScreen from '../screens/br/BattleRoyaleBattleScreen';
+import BattleRoyaleResultScreen from '../screens/br/BattleRoyaleResultScreen';
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
     const [user, setUser] = useState(null);
     const [initializing, setInitializing] = useState(true);
+    const [authLoaded, setAuthLoaded] = useState(false);
+    const [timedOut, setTimedOut] = useState(false);
 
     useEffect(() => {
+        // Minimum 3 second delay for branding
+        const timer = setTimeout(() => {
+            setTimedOut(true);
+        }, 3000);
+
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            if (initializing) setInitializing(false);
+            setAuthLoaded(true);
         });
-        return unsubscribe;
+
+        return () => {
+            unsubscribe();
+            clearTimeout(timer);
+        };
     }, []);
 
+    useEffect(() => {
+        if (authLoaded && timedOut) {
+            setInitializing(false);
+        }
+    }, [authLoaded, timedOut]);
+
     if (initializing) {
-        return (
-            <View style={styles.loading}>
-                <ActivityIndicator size="large" color={COLORS.primaryBlue} />
-            </View>
-        );
+        return <LoadingScreen />;
     }
 
     return (
@@ -62,6 +79,10 @@ const AppNavigator = () => {
                         <Stack.Screen name="DuelLobby" component={DuelLobbyScreen} />
                         <Stack.Screen name="DuelBattle" component={DuelBattleScreen} />
                         <Stack.Screen name="DuelResult" component={DuelResultScreen} />
+                        {/* Battle Royale Screens */}
+                        <Stack.Screen name="BattleRoyaleLobby" component={BattleRoyaleLobbyScreen} />
+                        <Stack.Screen name="BattleRoyaleBattle" component={BattleRoyaleBattleScreen} />
+                        <Stack.Screen name="BattleRoyaleResult" component={BattleRoyaleResultScreen} />
                     </>
                 ) : (
                     // Auth screens

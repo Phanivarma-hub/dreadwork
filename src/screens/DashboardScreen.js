@@ -218,7 +218,7 @@ const DashboardScreen = () => {
                     </LinearGradient>
                 </TouchableOpacity>
 
-                <TouchableOpacity activeOpacity={0.85} style={styles.modeCard}>
+                <TouchableOpacity activeOpacity={0.85} style={styles.modeCard} onPress={() => navigation.navigate('BattleRoyaleLobby')}>
                     <LinearGradient
                         colors={['#1F3B2E', '#1E293B']}
                         start={{ x: 0, y: 0 }}
@@ -229,7 +229,7 @@ const DashboardScreen = () => {
                             <Text style={styles.modeIcon}>💀</Text>
                             <View style={styles.modeInfo}>
                                 <Text style={styles.modeTitle}>Battle Royale</Text>
-                                <Text style={styles.modeDesc}>10 players. One survivor. Coming soon.</Text>
+                                <Text style={styles.modeDesc}>10 players. One survivor. Enter if you dare.</Text>
                             </View>
                             <Text style={styles.modeArrow}>›</Text>
                         </View>
