@@ -27,10 +27,18 @@ function getGroqClient() {
 
 // Initialize Firebase Admin
 try {
-    admin.initializeApp({
-        projectId: "dreadworrk",
-    });
-    console.log("✅ Firebase Admin initialized");
+    if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+        const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+        admin.initializeApp({
+            credential: admin.credential.cert(serviceAccount),
+        });
+        console.log("✅ Firebase Admin initialized via service account");
+    } else {
+        admin.initializeApp({
+            projectId: "dreadworrk",
+        });
+        console.log("✅ Firebase Admin initialized via Project ID (fallback)");
+    }
 } catch (err) {
     console.log("Firebase Admin already initialized or error:", err.message);
 }
