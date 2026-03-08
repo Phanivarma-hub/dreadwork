@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 // For local development with iOS simulator: 'http://localhost:3000'
 // For physical device on same WiFi: 'http://<YOUR_PC_IP>:3000'
 // For production: your deployed server URL
-const SERVER_URL = 'http://192.168.0.103:3000';
+const SERVER_URL = 'https://dreadwork.onrender.com';
 
 let socket = null;
 

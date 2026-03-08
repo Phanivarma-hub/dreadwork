@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, SafeAreaView, AppState, TouchableOpacity, Alert
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
-import { theme } from '../../constants/theme';
+import { theme, SPACING } from '../../constants/theme';
 import GameButton from '../../components/GameButton';
 import { auth, db } from '../../config/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
